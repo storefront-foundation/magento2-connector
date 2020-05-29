@@ -11,4 +11,5 @@ See `.env.sample` file as an example of adding env variable via [dotenv](https:/
 ## Examples
 
 - See `/examples/react/` for [ReactJS](https://reactjs.org/) stuff examples
-- See `/examples/next/` for [NextJS](https://nextjs.org/) handlers examples
+- See `/examples/rsf/` for [React Storefront](https://github.com/react-storefront-community/react-storefront) handlers examples
+- See `/examples/next/` for [NextJS](https://nextjs.org/) handlers examples (they are also can be used in RSF v7+)
