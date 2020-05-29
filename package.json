@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Magento 2 Connector",
   "module": "./index.js",
-  "directories": {
-    "test": "test"
-  },
   "watch": {
     "push-build": {
       "patterns": [

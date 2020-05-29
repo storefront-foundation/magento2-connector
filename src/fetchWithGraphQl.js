@@ -5,7 +5,6 @@ function fetchWithGraphQl(query, token = null) {
   const authHeaders = token ? {
     Authorization: `Bearer ${token}`,
   } : {};
-  console.log('__ : fetchWithGraphQl -> graphQlHost', graphQlHost);
   return fetch(graphQlHost, {
     method: 'POST',
     headers: {
