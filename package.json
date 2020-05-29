@@ -1,0 +1,67 @@
+{
+  "name": "magento2-connector",
+  "version": "1.0.0",
+  "description": "Magento 2 Connector",
+  "module": "./index.js",
+  "directories": {
+    "test": "test"
+  },
+  "watch": {
+    "push-build": {
+      "patterns": [
+        "src"
+      ],
+      "ignore": "*/index.js",
+      "extensions": "js",
+      "quiet": false
+    }
+  },
+  "scripts": {
+    "release": "npm run build; cd dist; FILE=$(npm pack); curl -F package=@$FILE https://$GEMFURY_PUSH_TOKEN@push.fury.io/moovweb/",
+    "test": "jest",
+    "watch": "npm-watch",
+    "push-build": "npm run build && cd dist && yalc push && cd ..",
+    "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2020 Moov Corporation.  All rights reserved.\n */\" src",
+    "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
+    "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
+    "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
+    "build:sources": "babel ./src --source-maps --out-dir dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.0",
+    "@babel/plugin-transform-runtime": "^7.7.6",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-imports": "^2.0.0",
+    "create-index": "^2.5.0",
+    "lodash": "^4.17.15",
+    "npm-watch": "^0.6.0",
+    "prettier": "^1.19.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "regenerator": true
+        }
+      ],
+      [
+        "babel-plugin-transform-imports"
+      ],
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+}
