@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { fetchRevokeToken, normalizeRevokeToken } from '../../../../cart/customer/revokeToken';
+import { fetchRevokeToken, normalizeRevokeToken } from 'magento2-connector/cart/customer/revokeToken';
 
 /**
  * Magento 2: customer revokeToken handler
