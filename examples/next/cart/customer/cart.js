@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { fetchCart, normalizeCart } from '../../../../cart/customer/cart';
+import { fetchCart, normalizeCart } from 'magento2-connector/cart/customer/cart';
 
 /**
  * Magento 2: customer cart handler

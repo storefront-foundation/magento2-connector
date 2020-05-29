@@ -1,9 +1,9 @@
 import get from 'lodash/get';
-import getError from '../../../../helpers/getError';
+import getError from 'magento2-connector/helpers/getError';
 import {
   fetchAddSimpleProductsToCart,
   normalizeAddSimpleProductsToCart,
-} from '../../../../cart/common/addSimpleProductsToCart';
+} from 'magento2-connector/cart/common/addSimpleProductsToCart';
 
 /**
  * Magento 2: common addToCart handler

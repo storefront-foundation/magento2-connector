@@ -1,7 +1,7 @@
 import {
   fetchCreateEmptyCart,
   normalizeCreateEmptyCart,
-} from '../../../../cart/guest/createEmptyCart';
+} from 'magento2-connector/cart/guest/createEmptyCart';
 
 /**
  * Magento 2: guest obtainSession handler

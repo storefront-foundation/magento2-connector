@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import { fetchCreateCustomer, normalizeCreateCustomer } from '../../../../cart/customer/createCustomer';
-import getError from '../../../../helpers/getError';
+import { fetchCreateCustomer, normalizeCreateCustomer } from 'magento2-connector/cart/customer/createCustomer';
+import getError from 'magento2-connector/helpers/getError';
 
 /**
  * Magento 2: createCustomer handler

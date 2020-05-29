@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { fetchGenerateToken, normalizeGenerateToken } from '../../../../cart/customer/generateToken';
+import { fetchGenerateToken, normalizeGenerateToken } from 'magento2-connector/cart/customer/generateToken';
 
 /**
  * Magento 2: customer generateToken handler
