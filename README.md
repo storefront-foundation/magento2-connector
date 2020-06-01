@@ -8,6 +8,9 @@
 
 See `.env.sample` file as an example of adding env variable via [dotenv](https://www.npmjs.com/package/dotenv). You can also check [this guide](https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html) to get more info about Node.js Environment Variables.
 
+## Usage
+
+
 ## Examples
 
 - See `/examples/react/` for [ReactJS](https://reactjs.org/) stuff examples
