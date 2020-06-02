@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "release": "npm run build; cd dist; FILE=$(npm pack); curl -F package=@$FILE https://$GEMFURY_PUSH_TOKEN@push.fury.io/moovweb/",
+    "release": "npm run build && cd dist && npm publish && cd ..",
     "test": "jest",
     "watch": "npm-watch",
     "push-build": "npm run build && cd dist && yalc push && cd ..",
