@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-magento2-connector",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Magento 2 Connector",
   "module": "./index.js",
   "watch": {
