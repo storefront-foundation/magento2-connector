@@ -21,7 +21,7 @@
     "create-indexes": "create-index -ri --banner \"/**\n * @license\n * Copyright © 2017-2020 Moov Corporation.  All rights reserved.\n */\" src",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run build:prep && NODE_ENV=production npm run build:sources",
-    "build:prep": "npm run clean && npm run create-indexes && cp package.json dist",
+    "build:prep": "npm run clean && npm run create-indexes && cp package.json README.md dist",
     "build:sources": "babel ./src --source-maps --out-dir dist"
   },
   "author": "",
