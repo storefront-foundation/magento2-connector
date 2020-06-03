@@ -1,5 +1,6 @@
+import { fetchCart, normalizeCart } from 'react-storefront-magento2-connector/cart/customer/cart';
+
 import get from 'lodash/get';
-import { fetchCart, normalizeCart } from 'magento2-connector/cart/customer/cart';
 
 /**
  * Magento 2: customer cart handler

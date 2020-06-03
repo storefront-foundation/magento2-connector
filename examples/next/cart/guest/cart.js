@@ -1,5 +1,6 @@
+import { fetchCart, normalizeCart } from 'react-storefront-magento2-connector/cart/guest/cart';
+
 import get from 'lodash/get';
-import { fetchCart, normalizeCart } from 'magento2-connector/cart/guest/cart';
 
 /**
  * Magento 2: guest cart handler

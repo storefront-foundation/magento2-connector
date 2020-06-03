@@ -1,5 +1,5 @@
+import fetchProductReviews from 'react-storefront-magento2-connector/product/reviews/fetchProductReviews';
 import get from 'lodash/get';
-import fetchProductReviews from 'magento2-connector/product/reviews/fetchProductReviews';
 
 export default async function reviews(req, res) {
   const productId = get(req, 'query.productId', '');

@@ -1,6 +1,7 @@
+import { fetchCreateCustomer, normalizeCreateCustomer } from 'react-storefront-magento2-connector/cart/customer/createCustomer';
+
 import get from 'lodash/get';
-import { fetchCreateCustomer, normalizeCreateCustomer } from 'magento2-connector/cart/customer/createCustomer';
-import getError from 'magento2-connector/helpers/getError';
+import getError from 'react-storefront-magento2-connectorr/helpers/getError';
 
 /**
  * Magento 2: createCustomer handler
