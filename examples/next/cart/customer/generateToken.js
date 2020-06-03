@@ -1,5 +1,6 @@
+import { fetchGenerateToken, normalizeGenerateToken } from 'react-storefront-magento2-connector/cart/customer/generateToken';
+
 import get from 'lodash/get';
-import { fetchGenerateToken, normalizeGenerateToken } from 'magento2-connector/cart/customer/generateToken';
 
 /**
  * Magento 2: customer generateToken handler

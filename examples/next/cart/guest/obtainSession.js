@@ -1,7 +1,7 @@
 import {
   fetchCreateEmptyCart,
   normalizeCreateEmptyCart,
-} from 'magento2-connector/cart/guest/createEmptyCart';
+} from 'react-storefront-magento2-connector/cart/guest/createEmptyCart';
 
 /**
  * Magento 2: guest obtainSession handler

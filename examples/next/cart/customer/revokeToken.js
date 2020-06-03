@@ -1,5 +1,6 @@
+import { fetchRevokeToken, normalizeRevokeToken } from 'react-storefront-magento2-connector/cart/customer/revokeToken';
+
 import get from 'lodash/get';
-import { fetchRevokeToken, normalizeRevokeToken } from 'magento2-connector/cart/customer/revokeToken';
 
 /**
  * Magento 2: customer revokeToken handler

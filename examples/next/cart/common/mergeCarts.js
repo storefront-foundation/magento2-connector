@@ -1,5 +1,6 @@
+import { fetchMergeCarts, normalizeMergeCarts } from 'react-storefront-magento2-connector/cart/common/mergeCarts';
+
 import get from 'lodash/get';
-import { fetchMergeCarts, normalizeMergeCarts } from 'magento2-connector/cart/common/mergeCarts';
 
 /**
  * Magento 2: common mergeCarts handler

@@ -22,7 +22,7 @@ Then, you can simply import normalizer and fetch helper in your backend handlers
 
 ### Product data:
 ```js
-import { fetchProduct, normalizeProduct } from 'api/magento/product';
+import { fetchProduct, normalizeProduct } from 'react-storefront-magento2-connector/product';
 ...
 
 const rawProduct = await fetchProduct(productId);
@@ -32,7 +32,7 @@ const product = normalizeProduct(rawProduct, productId);
 
 ### Product reviews:
 ```js
-import fetchProductReviews from 'api/magento/product/reviews/fetchProductReviews';
+import fetchProductReviews from 'react-storefront-magento2-connector/product/reviews/fetchProductReviews';
 ...
 // Magento API returns HTML as result for reviews, so no need to normalize the data
 const data = await fetchProductReviews(productId);
@@ -42,7 +42,7 @@ const data = await fetchProductReviews(productId);
 ### CMS slots:
 
 ```js
- import { fetchCmsBlocks, normalizeCmsBlocks } from 'api/magento/cms/blocks';
+ import { fetchCmsBlocks, normalizeCmsBlocks } from 'react-storefront-magento2-connector/cms/blocks';
  ...
  // identifiers is a string with CMS block id
  const rawData = await fetchCmsBlocks({ identifiers });
@@ -53,7 +53,7 @@ const data = await fetchProductReviews(productId);
 ### Search
 
 ```js
- import { fetchSearch, normalizeSearch } from 'api/magento/search';
+ import { fetchSearch, normalizeSearch } from 'react-storefront-magento2-connector/search';
  ...
 //  where "search" is a search term
  const rawData = await fetchSearch({ search });
@@ -67,7 +67,7 @@ const data = await fetchProductReviews(productId);
 #### Subcategory data
 
 ```js
- import { fetchSubcategory, normalizeSubcategory } from 'api/magento/subcategory';
+ import { fetchSubcategory, normalizeSubcategory } from 'react-storefront-magento2-connector/subcategory';
  ...
  const rawData = await fetchSubcategory({ categoryId });
 //  normalize data to follow React Storefront data contract https://docs.reactstorefront.io/guides/subcategory
@@ -77,7 +77,7 @@ const data = await fetchProductReviews(productId);
 #### Subcategory id by URL key
 
 ```js
- import { fetchSubcategoryId, normalizeSubcategoryId } from 'api/magento/subcategory/id';
+ import { fetchSubcategoryId, normalizeSubcategoryId } from 'react-storefront-magento2-connector/subcategory/id';
  ...
  const rawData = await fetchSubcategoryId({ urlKey });
  const id = normalizeSubcategoryId(rawData);
@@ -90,7 +90,7 @@ const data = await fetchProductReviews(productId);
  import {
   fetchSubcategorySubCategories,
   normalizeSubcategorySubCategories,
- } from 'api/magento/subcategory/sub-categories';
+ } from 'react-storefront-magento2-connector/subcategory/sub-categories';
  ...
  const rawData = await fetchSubcategorySubCategories({ urlKey });
  const data = normalizeSubcategorySubCategories(rawData);
@@ -100,7 +100,7 @@ const data = await fetchProductReviews(productId);
 ### Menu
 
 ```js
- import { fetchMenu, normalizeMenu } from 'api/magento/menu';
+ import { fetchMenu, normalizeMenu } from 'react-storefront-magento2-connector/menu';
  ...
  const rawData = await fetchMenu({});
  const data = normalizeMenu(rawData);
@@ -112,7 +112,7 @@ const data = await fetchProductReviews(productId);
 Catch / properly handle error message from GraphQL response
 
 ```js
-import getError from 'api/magento/helpers/getError';
+import getError from 'react-storefront-magento2-connector/helpers/getError';
 ...
 const rawData = await fetchProduct(productId);
 
@@ -143,7 +143,7 @@ if (error) {
 #### Get cart data
 
 ```js
- import { fetchCart, normalizeCart } from 'api/magento/cart/customer/cart';
+ import { fetchCart, normalizeCart } from 'react-storefront-magento2-connector/cart/customer/cart';
  ...
  const rawData = await fetchCart(token);
  const data = normalizeCart(rawData);

@@ -1,10 +1,11 @@
+import { fetchMenu, normalizeMenu } from 'react-storefront-magento2-connector/menu';
+
 /**
  * To be used as global data RSF handler (also known as `globalState` in RSF v6)
  */
 import get from 'lodash/get';
-import pick from 'lodash/pick';
 import isEmpty from 'lodash/isEmpty';
-import { fetchMenu, normalizeMenu } from 'magento2-connector/menu';
+import pick from 'lodash/pick';
 
 function normalizeMenuItems(items) {
   if (isEmpty(items)) {

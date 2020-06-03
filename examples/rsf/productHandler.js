@@ -1,11 +1,12 @@
+import { fetchProduct, normalizeProduct } from 'react-storefront-magento2-connector/product';
+
 /**
  * To be used as `/api/p/[productId].js` RSF product handler
  */
 import fulfillAPIRequest from 'react-storefront/props/fulfillAPIRequest';
-import withCaching from 'react-storefront/utils/withCaching';
 import get from 'lodash/get';
-import { fetchProduct, normalizeProduct } from 'magento2-connector/product';
 import getGlobalData from './getGlobalData';
+import withCaching from 'react-storefront/utils/withCaching';
 
 async function getPageData(productId) {
   const pid = productId.replace('.html', '');
