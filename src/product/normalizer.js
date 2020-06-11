@@ -144,7 +144,7 @@ function normalizer(rawData, productId) {
   return {
     isConfigurableProduct,
     id: productId,
-    dbId: get(rawProduct, 'id'), // product ID in Magento database (used for other queries)
+    reviewsKey: get(rawProduct, 'id'), // product ID in Magento database (used for other queries)
     sku: get(rawProduct, 'sku'),
     url: `/p/${productId}.html`,
     name: get(rawProduct, 'name'),
