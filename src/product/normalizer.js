@@ -46,6 +46,7 @@ function getColors(rawProduct) {
       return {
         id: color,
         text: color,
+        css: get(opt, 'swatch_data.value'),
         image: {
           alt: color,
           // @TODO: add support of RGB color code in ProductOptionSelector component:

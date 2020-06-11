@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import keyBy from 'lodash/keyBy';
 import groupBy from 'lodash/groupBy';
+import keyBy from 'lodash/keyBy';
 
 function getSizes(rawProduct) {
   const rawConfigurableOptions = get(rawProduct, 'configurable_options', []);
@@ -25,25 +25,26 @@ function getSwatches(rawProduct) {
     return get(attrsKeyed, 'color.label');
   });
   return colors.map((color) => {
-    const label = get(color, 'label', '');
-    const rgb = get(color, 'swatch_data.value', '');
-    const thumbnail = get(variantsGrouped, `${label}[0].product.media_gallery[0]url`, '');
+    const text = get(color, 'label', '');
+    const css = get(color, 'swatch_data.value', '');
+    const image = get(variantsGrouped, `${label}[0].product.media_gallery[0]url`, '');
     return {
-      label,
-      rgb,
-      thumbnail,
+      id: text,
+      text,
+      css,
+      image,
     };
   });
 }
 
 function normalizeProductItem(rawItem) {
   return {
-    name: get(rawItem, 'name', ''),
+    id: get(rawItem, 'sku', ''),
     url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
-    thumbnail: get(rawItem, 'thumbnail.url', ''),
-    sku: get(rawItem, 'sku', ''),
+    name: get(rawItem, 'name', ''),
     basePrice: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
-    swatches: getSwatches(rawItem),
+    thumbnail: get(rawItem, 'thumbnail.url', ''),
+    colors: getSwatches(rawItem),
     sizes: getSizes(rawItem),
   };
 }
@@ -90,7 +91,7 @@ function normalizer(rawData) {
     total: get(rawSubcategoryData, 'total_count', 0),
     totalPages: get(rawSubcategoryData, 'page_info.total_pages', 1),
     currentPage: get(rawSubcategoryData, 'page_info.current_page', 1),
-    items: get(rawSubcategoryData, 'items', []).map(normalizeProductItem),
+    products: get(rawSubcategoryData, 'items', []).map(normalizeProductItem),
     ...getSortData(rawSubcategoryData),
     ...getFiltersData(rawSubcategoryData),
   };
