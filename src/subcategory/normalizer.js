@@ -6,11 +6,11 @@ function getSizes(rawProduct) {
   const rawConfigurableOptions = get(rawProduct, 'configurable_options', []);
   const sizes = get(keyBy(rawConfigurableOptions, 'attribute_code'), 'size.values', []);
   return sizes.map((size) => {
-    const label = get(size, 'label', '');
-    const value = get(size, 'swatch_data.value', '');
+    const text = get(size, 'label', '');
+    const id = get(size, 'swatch_data.value', '');
     return {
-      label,
-      value,
+      text,
+      id,
     };
   });
 }
