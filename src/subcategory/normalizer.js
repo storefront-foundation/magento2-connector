@@ -42,10 +42,12 @@ function normalizeProductItem(rawItem) {
     id: get(rawItem, 'sku', ''),
     url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
     name: get(rawItem, 'name', ''),
-    basePrice: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
+    basePriceText: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
     thumbnail: get(rawItem, 'thumbnail.url', ''),
     colors: getSwatches(rawItem),
     sizes: getSizes(rawItem),
+    // @TODO: can we get this data? if no, just drop it
+    reviewCount: 0,
   };
 }
 
@@ -61,11 +63,11 @@ function getSortData(rawSubcategoryData) {
   };
 }
 
-function getFiltersData(rawSubcategoryData) {
-  const rawFilters = get(rawSubcategoryData, 'aggregations', [])
-    .filter((filter) => get(filter, 'attribute_code') !== 'category_id'); // skip categories
+function getFacetsData(rawSubcategoryData) {
+  const rawFacets = get(rawSubcategoryData, 'aggregations', [])
+    .filter((facet) => get(facet, 'attribute_code') !== 'category_id'); // skip categories
   return {
-    filters: rawFilters.map((rawFilter) => {
+    facets: rawFacets.map((rawFilter) => {
       const attr = get(rawFilter, 'attribute_code');
       const rawOptions = get(rawFilter, 'options', []);
       return {
@@ -76,6 +78,8 @@ function getFiltersData(rawSubcategoryData) {
             name: get(option, 'label'),
             code: `${attr}:${get(option, 'value')}`,
             matches: get(option, 'count', 0),
+            // @TODO: add a color code
+            css: '',
           })),
       };
     }),
@@ -93,7 +97,7 @@ function normalizer(rawData) {
     currentPage: get(rawSubcategoryData, 'page_info.current_page', 1),
     products: get(rawSubcategoryData, 'items', []).map(normalizeProductItem),
     ...getSortData(rawSubcategoryData),
-    ...getFiltersData(rawSubcategoryData),
+    ...getFacetsData(rawSubcategoryData),
   };
 }
 

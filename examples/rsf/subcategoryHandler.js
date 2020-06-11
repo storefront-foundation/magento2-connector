@@ -75,10 +75,10 @@ async function subcategoryHandler(req, res) {
     filters = [];
   }
 
-  // 1) get `id` and `name` & `subcategoryNav` data
+  // 1) get `id` and `name` & `navMenu` data
   let id;
   let name;
-  let subcategoryNav = null;
+  let navMenu = null;
   if (isSearch) {
     id = `Search: ${q}`;
     name = `Results for "${q}"`;
@@ -88,7 +88,7 @@ async function subcategoryHandler(req, res) {
     id = idData.id;
     name = idData.name;
     const rawSubCategoriesData = await fetchSubcategorySubCategories({ urlKey });
-    subcategoryNav = normalizeSubcategorySubCategories(rawSubCategoriesData);
+    navMenu = normalizeSubcategorySubCategories(rawSubCategoriesData);
   }
 
   // 2) get all subcategory page data
@@ -137,8 +137,8 @@ async function subcategoryHandler(req, res) {
         code: `${get(option, 'code')}: ASC`,
       }])).flat(),
     filters,
-    facets: get(data, 'filters', []),
-    subcategoryNav,
+    facets: get(data, 'facets', []),
+    navMenu,
     breadcrumbs: [
       {
         text: 'Home',

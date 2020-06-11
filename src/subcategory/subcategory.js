@@ -2,6 +2,7 @@ import { fetchCmsBlocks, normalizeCmsBlocks } from 'react-storefront-magento2-co
 import { fetchSubcategory, normalizeSubcategory } from '.'
 import { fetchSubcategoryId, normalizeSubcategoryId } from './id'
 import { fetchSubcategorySubCategories, normalizeSubcategorySubCategories } from './sub-categories'
+
 import first from 'lodash/first'
 import get from 'lodash/get'
 import groupBy from 'lodash/groupBy'
@@ -34,10 +35,10 @@ export default async function subcategory(
       filters = []
     }
 
-    // 1) get `id` and `name` & `subcategoryNav` data
+    // 1) get `id` and `name` & `navMenu` data
     let id
     let name
-    let subcategoryNav = null
+    let navMenu = null
     if (isSearch) {
       id = `Search: ${q}`
       name = `Results for "${q}"`
@@ -47,7 +48,7 @@ export default async function subcategory(
       id = idData.id
       name = idData.name
       const rawSubCategoriesData = await fetchSubcategorySubCategories({ urlKey })
-      subcategoryNav = normalizeSubcategorySubCategories(rawSubCategoriesData)
+      navMenu = normalizeSubcategorySubCategories(rawSubCategoriesData)
     }
 
     // 2) get all subcategory page data
@@ -102,8 +103,8 @@ export default async function subcategory(
         ])
         .flat(),
       filters,
-      facets: get(data, 'filters', []),
-      subcategoryNav,
+      facets: get(data, 'facets', []),
+      navMenu,
       breadcrumbs: [
         {
           text: 'Home',
