@@ -1,8 +1,9 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import SessionContext, { initSessionState } from './SessionContext';
+import { getCookieValue, killCookie, setCookie } from './cookieHelpers';
+
 import fetch from 'isomorphic-unfetch';
 import get from 'lodash/get';
-import SessionContext, { initSessionState } from './SessionContext';
-import { setCookie, getCookieValue, killCookie } from './cookieHelpers';
 
 async function obtainSession(session, setSession) {
   // ### 1 - LOGGED IN SESSION
@@ -152,9 +153,16 @@ export default function SessionProvider({ children }) {
           success: true,
         };
       },
-      addToCart: async ({ sku, quantity = 1 }) => {
+      addToCart: async (product = {}, { size = {}, color = {}, quantity = 1 }) => {
         const cartId = get(session, 'guestCartId') || get(session, 'customerCartId');
         const token = get(session, 'customerToken');
+
+        let sku = get(product, 'sku');
+
+        if (product.isConfigurableProduct) {
+          sku += `-${size.id}-${color.id}`;
+        }
+
         let queryStr = '';
         queryStr += `sku=${encodeURIComponent(sku)}`;
         queryStr += `&quantity=${encodeURIComponent(quantity)}`;
