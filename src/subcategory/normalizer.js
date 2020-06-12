@@ -27,9 +27,9 @@ function getSwatches(rawProduct) {
   return colors.map((color) => {
     const text = get(color, 'label', '');
     const css = get(color, 'swatch_data.value', '');
-    const image = get(variantsGrouped, `${label}[0].product.media_gallery[0]url`, '');
+    const image = get(variantsGrouped, `${text}[0].product.media_gallery[0]url`, '');
     return {
-      id: text,
+      id: css,
       text,
       css,
       image,
@@ -38,16 +38,21 @@ function getSwatches(rawProduct) {
 }
 
 function normalizeProductItem(rawItem) {
+  const thumbnail = get(rawItem, 'thumbnail.url', '');
   return {
     id: get(rawItem, 'sku', ''),
     url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
     name: get(rawItem, 'name', ''),
-    basePriceText: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
-    thumbnail: get(rawItem, 'thumbnail.url', ''),
+    price: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
+    basePriceText: `${get(rawItem, 'price_range.minimum_price.final_price.value', 0)}`,
     colors: getSwatches(rawItem),
     sizes: getSizes(rawItem),
-    // @TODO: can we get this data? if no, just drop it
-    reviewCount: 0,
+    thumbnail: {
+      src: thumbnail,
+      alt: 'thumbnail',
+      type: 'image',
+    },
+    reviewCount: 0, // @TODO: can we get this data? if no, just drop it
   };
 }
 
@@ -69,6 +74,7 @@ function getFacetsData(rawSubcategoryData) {
   return {
     facets: rawFacets.map((rawFilter) => {
       const attr = get(rawFilter, 'attribute_code');
+      const isColorFacet = attr === 'color';
       const rawOptions = get(rawFilter, 'options', []);
       return {
         name: get(rawFilter, 'label'),
@@ -78,8 +84,7 @@ function getFacetsData(rawSubcategoryData) {
             name: get(option, 'label'),
             code: `${attr}:${get(option, 'value')}`,
             matches: get(option, 'count', 0),
-            // @TODO: add a color code
-            css: '',
+            css: isColorFacet ? get(option, 'label', '').toLowerCase() : '',
           })),
       };
     }),

@@ -80,14 +80,7 @@ export default async function subcategory(
       totalPages: get(data, 'totalPages', 0),
       isLanding,
       cmsBlocks,
-      products: get(data, 'items').map(item => ({
-        ...item,
-        id: item.sku,
-        thumbnail: {
-          src: get(item, 'thumbnail', ''),
-        },
-        price: get(item, 'basePrice'),
-      })),
+      products: get(data, 'products', []),
       sort,
       sortOptions: get(data, 'sortOptions', [])
         .map(option => [
