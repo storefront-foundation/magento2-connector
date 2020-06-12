@@ -26,13 +26,25 @@ function getSwatches(rawProduct) {
   });
   return colors.map((color) => {
     const text = get(color, 'label', '');
-    const css = get(color, 'swatch_data.value', '');
+    const rgb = get(color, 'swatch_data.value', '');
     const image = get(variantsGrouped, `${text}[0].product.media_gallery[0]url`, '');
+    const thumbnail = {
+      alt: 'thumbnail image',
+      src: image,
+    };
     return {
-      id: css,
+      id: rgb,
+      css: rgb,
       text,
-      css,
-      image,
+      image: {
+        src: `https://via.placeholder.com/48x48/${rgb.replace('#', '')}?text=%20`,
+        type: 'image',
+        alt: `${text} swatch`,
+      },
+      media: {
+        thumbnail,
+        thumbnails: [thumbnail],
+      },
     };
   });
 }
@@ -44,7 +56,7 @@ function normalizeProductItem(rawItem) {
     url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
     name: get(rawItem, 'name', ''),
     price: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
-    basePriceText: `${get(rawItem, 'price_range.minimum_price.final_price.value', 0)}`,
+    basePriceText: `$${get(rawItem, 'price_range.minimum_price.final_price.value', 0)}`,
     colors: getSwatches(rawItem),
     sizes: getSizes(rawItem),
     thumbnail: {
