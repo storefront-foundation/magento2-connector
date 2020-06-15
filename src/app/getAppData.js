@@ -10,7 +10,7 @@ function normalizeMenuItems(items) {
   return items.map(item => ({
     text: get(item, 'name'),
     as: `/s${get(item, 'url')}`,
-    href: '/s/[subcategoryId]',
+    href: '/s/[...categorySlug]',
     items: normalizeMenuItems(get(item, 'items', [])),
   }));
 }
