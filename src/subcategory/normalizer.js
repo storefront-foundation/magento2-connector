@@ -53,7 +53,7 @@ function normalizeProductItem(rawItem) {
   const thumbnail = get(rawItem, 'thumbnail.url', '');
   return {
     id: get(rawItem, 'sku', ''),
-    url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
+    url: `/p/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
     name: get(rawItem, 'name', ''),
     price: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
     basePriceText: `$${get(rawItem, 'price_range.minimum_price.final_price.value', 0)}`,
