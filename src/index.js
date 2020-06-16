@@ -15,5 +15,6 @@ export { default as menu } from './menu';
 export { default as product } from './product';
 export { default as routes } from './routes.js';
 export { default as search } from './search';
+export { default as session } from './session';
 export { default as subcategory } from './subcategory';
 
