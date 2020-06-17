@@ -31,7 +31,7 @@ export function getCookieValue(req, cookieName) {
 /**
  * Kills cookie in NodeJS handler (sets negative expiry time)
  *
- * @param {Request} res The response object
+ * @param {Response} res The response object
  * @param {String} cookieName Cookie name
  */
 export function killCookie(res, cookieName) {

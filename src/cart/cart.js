@@ -42,7 +42,6 @@ async function fetchAddToCart({
  * POST: add to cart handler
  */
 async function addToCartHandler(req, res) {
-  console.log('__ : cart -> req.method', req.method);
   const cartId = getCookieValue(req, COOKIES.M2_GUEST_CART_ID) || getCookieValue(req, COOKIES.M2_CUSTOMER_CART_ID)
   const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
 

@@ -6,4 +6,5 @@
 // @create-index
 
 export { default as cart } from './cart.js';
+export { default as generateToken } from './generateToken.js';
 
