@@ -1,4 +1,5 @@
 export { default as app } from './app';
+export { default as home } from './home';
 export { default as cart } from './cart';
 export { default as cms } from './cms';
 export { default as config } from './config.js';
