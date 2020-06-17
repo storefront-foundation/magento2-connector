@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright © 2017-2020 Moov Corporation.  All rights reserved.
- */
-
-// @create-index
-
 export { default as app } from './app';
 export { default as cart } from './cart';
 export { default as cms } from './cms';
@@ -17,4 +10,3 @@ export { default as routes } from './routes.js';
 export { default as search } from './search';
 export { default as session } from './session';
 export { default as subcategory } from './subcategory';
-

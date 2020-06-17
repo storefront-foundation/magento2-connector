@@ -2,12 +2,7 @@ import { getCookieValue, killCookie } from '../helpers/nodeCookieHelpers';
 import obtainSession from './guest/obtainSession';
 import guestCart from './guest/cart';
 import customerCart from './customer/cart';
-
-const COOKIES = {
-  M2_GUEST_CART_ID: 'M2_guestCartId',
-  M2_CUSTOMER_CART_ID: 'M2_customerCartId',
-  M2_CUSTOMER_TOKEN: 'M2_token',
-};
+import { COOKIES } from '../constants';
 
 export default async function session(req, res) {
   // ### 1 - LOGGED IN SESSION
