@@ -1,11 +1,12 @@
 import get from 'lodash/get';
+import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
 
 /**
  * Magento 2: common addSimpleProductsToCart normalizer
  */
 function normalizer(rawData) {
   const rawCartData = get(rawData, 'data.addSimpleProductsToCart.cart', null);
-  const items = get(rawCartData, 'items', []); // @TODO: normalize cart items
+  const items = cartItemsNormalizer(get(rawCartData, 'items', []));
   return {
     cart: {
       items,

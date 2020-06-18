@@ -1,6 +1,8 @@
 const cartItemProductDefaultSchema = `
   name
   sku
+  url_key
+  url_suffix
   thumbnail { url }
   price_range {
     maximum_price {
