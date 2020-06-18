@@ -6,4 +6,5 @@
 // @create-index
 
 export { default as getError } from './getError.js';
+export { default as nodeCookieHelpers } from './nodeCookieHelpers.js';
 

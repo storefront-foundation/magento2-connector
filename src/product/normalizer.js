@@ -46,6 +46,7 @@ function getColors(rawProduct) {
       return {
         id: color,
         text: color,
+        css: get(opt, 'swatch_data.value'),
         image: {
           alt: color,
           // @TODO: add support of RGB color code in ProductOptionSelector component:
@@ -144,7 +145,7 @@ function normalizer(rawData, productId) {
   return {
     isConfigurableProduct,
     id: productId,
-    dbId: get(rawProduct, 'id'), // product ID in Magento database (used for other queries)
+    reviewsKey: get(rawProduct, 'id'), // product ID in Magento database (used for other queries)
     sku: get(rawProduct, 'sku'),
     url: `/p/${productId}.html`,
     name: get(rawProduct, 'name'),

@@ -2,7 +2,7 @@ import fetchWithGraphQl from '../../fetchWithGraphQl';
 import cmsBlocksQuery from './query';
 
 /**
- * Magento 2: menu fetcher
+ * Magento 2: cms blocks fetcher
  */
 async function fetcher({ identifiers }) {
   const query = cmsBlocksQuery({ identifiers });

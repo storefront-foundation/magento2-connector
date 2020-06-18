@@ -1,6 +1,7 @@
 import subcategoryQuery from './query';
 import fetchSubcategory from './fetcher';
 import normalizeSubcategory from './normalizer';
+import subcategory from './subcategory';
 
 /**
  * Usage example (in handler):
@@ -13,6 +14,7 @@ import normalizeSubcategory from './normalizer';
  * ...
  * ...
  */
+export default subcategory;
 export {
   subcategoryQuery,
   fetchSubcategory,

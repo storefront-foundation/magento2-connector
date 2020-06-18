@@ -1,16 +1,16 @@
 import get from 'lodash/get';
-import keyBy from 'lodash/keyBy';
 import groupBy from 'lodash/groupBy';
+import keyBy from 'lodash/keyBy';
 
 function getSizes(rawProduct) {
   const rawConfigurableOptions = get(rawProduct, 'configurable_options', []);
   const sizes = get(keyBy(rawConfigurableOptions, 'attribute_code'), 'size.values', []);
   return sizes.map((size) => {
-    const label = get(size, 'label', '');
-    const value = get(size, 'swatch_data.value', '');
+    const text = get(size, 'label', '');
+    const id = get(size, 'swatch_data.value', '');
     return {
-      label,
-      value,
+      text,
+      id,
     };
   });
 }
@@ -25,26 +25,46 @@ function getSwatches(rawProduct) {
     return get(attrsKeyed, 'color.label');
   });
   return colors.map((color) => {
-    const label = get(color, 'label', '');
+    const text = get(color, 'label', '');
     const rgb = get(color, 'swatch_data.value', '');
-    const thumbnail = get(variantsGrouped, `${label}[0].product.media_gallery[0]url`, '');
+    const image = get(variantsGrouped, `${text}[0].product.media_gallery[0]url`, '');
+    const thumbnail = {
+      alt: 'thumbnail image',
+      src: image,
+    };
     return {
-      label,
-      rgb,
-      thumbnail,
+      id: rgb,
+      css: rgb,
+      text,
+      image: {
+        src: `https://via.placeholder.com/48x48/${rgb.replace('#', '')}?text=%20`,
+        type: 'image',
+        alt: `${text} swatch`,
+      },
+      media: {
+        thumbnail,
+        thumbnails: [thumbnail],
+      },
     };
   });
 }
 
 function normalizeProductItem(rawItem) {
+  const thumbnail = get(rawItem, 'thumbnail.url', '');
   return {
+    id: get(rawItem, 'sku', ''),
+    url: `/p/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
     name: get(rawItem, 'name', ''),
-    url: `/${get(rawItem, 'url_key', '')}${get(rawItem, 'url_suffix', '')}`,
-    thumbnail: get(rawItem, 'thumbnail.url', ''),
-    sku: get(rawItem, 'sku', ''),
-    basePrice: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
-    swatches: getSwatches(rawItem),
+    price: get(rawItem, 'price_range.minimum_price.final_price.value', 0),
+    basePriceText: `$${get(rawItem, 'price_range.minimum_price.final_price.value', 0)}`,
+    colors: getSwatches(rawItem),
     sizes: getSizes(rawItem),
+    thumbnail: {
+      src: thumbnail,
+      alt: 'thumbnail',
+      type: 'image',
+    },
+    reviewCount: 0, // @TODO: can we get this data? if no, just drop it
   };
 }
 
@@ -60,12 +80,13 @@ function getSortData(rawSubcategoryData) {
   };
 }
 
-function getFiltersData(rawSubcategoryData) {
-  const rawFilters = get(rawSubcategoryData, 'aggregations', [])
-    .filter((filter) => get(filter, 'attribute_code') !== 'category_id'); // skip categories
+function getFacetsData(rawSubcategoryData) {
+  const rawFacets = get(rawSubcategoryData, 'aggregations', [])
+    .filter((facet) => get(facet, 'attribute_code') !== 'category_id'); // skip categories
   return {
-    filters: rawFilters.map((rawFilter) => {
+    facets: rawFacets.map((rawFilter) => {
       const attr = get(rawFilter, 'attribute_code');
+      const isColorFacet = attr === 'color';
       const rawOptions = get(rawFilter, 'options', []);
       return {
         name: get(rawFilter, 'label'),
@@ -75,6 +96,7 @@ function getFiltersData(rawSubcategoryData) {
             name: get(option, 'label'),
             code: `${attr}:${get(option, 'value')}`,
             matches: get(option, 'count', 0),
+            css: isColorFacet ? get(option, 'label', '').toLowerCase() : '',
           })),
       };
     }),
@@ -90,9 +112,9 @@ function normalizer(rawData) {
     total: get(rawSubcategoryData, 'total_count', 0),
     totalPages: get(rawSubcategoryData, 'page_info.total_pages', 1),
     currentPage: get(rawSubcategoryData, 'page_info.current_page', 1),
-    items: get(rawSubcategoryData, 'items', []).map(normalizeProductItem),
+    products: get(rawSubcategoryData, 'items', []).map(normalizeProductItem),
     ...getSortData(rawSubcategoryData),
-    ...getFiltersData(rawSubcategoryData),
+    ...getFacetsData(rawSubcategoryData),
   };
 }
 

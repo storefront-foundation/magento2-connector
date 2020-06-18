@@ -9,8 +9,8 @@ function normalizer(rawData) {
   const rawChildrenSorted = orderBy(rawChildren, 'position');
   return {
     items: rawChildrenSorted.map((item) => ({
-      name: get(item, 'name', ''),
-      url: `/${get(item, 'url_path', '')}${get(item, 'url_suffix', '')}`,
+      text: get(item, 'name', ''),
+      href: `/${get(item, 'url_path', '')}${get(item, 'url_suffix', '')}`,
     })),
   };
 }

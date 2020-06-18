@@ -1,6 +1,7 @@
 import productQuery from './query';
 import fetchProduct from './fetcher';
 import normalizeProduct from './normalizer';
+import product from './product';
 
 /**
  * Usage example (in handler):
@@ -13,6 +14,7 @@ import normalizeProduct from './normalizer';
  * ...
  * ...
  */
+export default product;
 export {
   productQuery,
   fetchProduct,
