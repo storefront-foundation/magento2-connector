@@ -1,9 +1,11 @@
-import { fetchMenu, normalizeMenu } from 'react-storefront-magento2-connector/menu';
+import { fetchMenu, normalizeMenu } from '../menu';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
+import MenuItem from '../types/MenuItem';
+import AppData from '../types/AppData';
 
-function normalizeMenuItems(items) {
+function normalizeMenuItems(items: any[]): MenuItem[] {
   if (isEmpty(items)) {
     return null;
   }
@@ -15,24 +17,25 @@ function normalizeMenuItems(items) {
   }));
 }
 
-function getTabs(menu) {
-  const items = get(menu, 'items', []);
-  return items.map((item) => ({
+function getTabs(menu: MenuItem): MenuItem[] {
+  const items: MenuItem[] = get(menu, 'items', []);
+  return items.map((item: MenuItem): MenuItem => ({
     ...pick(item, ['text', 'href', 'as']),
-    subcategories: (get(item, 'items') || []).map(subcategoryItem => ({
+    items: (get(item, 'items') || []).map((subcategoryItem: MenuItem): MenuItem => ({
       ...pick(subcategoryItem, ['text', 'href', 'as']),
+      items: [],
     })),
   }));
 }
 
-export default async function getAppData() {
+export default async function getAppData(): Promise<AppData> {
   const rawData = await fetchMenu({ numberOfLevels: 3 });
   const menuItems = normalizeMenu(rawData);
-  const menu = {
+  const menu: MenuItem = {
     header: 'header',
     footer: 'footer',
     items: normalizeMenuItems(menuItems),
   };
   const tabs = getTabs(menu);
-  return Promise.resolve({ menu, tabs });
+  return { menu, tabs };
 }

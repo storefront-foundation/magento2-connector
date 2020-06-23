@@ -1,4 +1,4 @@
-import { fetchCmsBlocks, normalizeCmsBlocks } from 'react-storefront-magento2-connector/cms/blocks'
+import { fetchCmsBlocks, normalizeCmsBlocks } from '../cms/blocks'
 import { fetchSubcategory, normalizeSubcategory } from '.'
 import { fetchSubcategoryId, normalizeSubcategoryId } from './id'
 import { fetchSubcategorySubCategories, normalizeSubcategorySubCategories } from './sub-categories'
