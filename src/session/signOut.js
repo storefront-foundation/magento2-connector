@@ -2,7 +2,7 @@ import get from 'lodash/get'
 import revokeToken from './customer/revokeToken'
 import obtainSession from './guest/obtainSession'
 import { COOKIES } from '../constants'
-import { getCookieValue, killCookie, setCookie } from '../helpers/nodeCookieHelpers'
+import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
 
 export default async function signOut(req, res) {
   try {
@@ -18,9 +18,11 @@ export default async function signOut(req, res) {
 
     // obtain new session after successful sign out
     const { guestCartId } = await obtainSession()
-    setCookie(res, COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 3600 * 24 * 7 }) // set guest cart id cookie for 7 days
-    killCookie(res, COOKIES.M2_CUSTOMER_TOKEN) // kill customer token cookie
-    killCookie(res, COOKIES.M2_CUSTOMER_CART_ID) // kill customer cart id cookie
+    const cookiesToSet = []
+    cookiesToSet.push(prepareSetCookie(COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 3600 * 24 * 7 })) // set guest cart id cookie for 7 days
+    cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_TOKEN)) // kill customer token cookie
+    cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_CART_ID)) // kill customer cart id cookie
+    setCookies(res, cookiesToSet)
 
     return res.status(200).send({
       signedIn: false,

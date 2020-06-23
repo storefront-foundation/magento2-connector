@@ -27,16 +27,6 @@ export function getCookieValue(req: Request | any, cookieName: string): string |
   return get(cookies, cookieName, null)
 }
 
-/**
- * Kills cookie in NodeJS handler (sets negative expiry time)
- *
- * @param {Response} res The response object
- * @param {String} cookieName Cookie name
- */
-export function killCookie(res: any, name: string): void {
-  setCookie(res, name, 'expire', { expires: new Date(0) }) // 1 Jan 1970
-}
-
 interface SetCookieOptions {
   /**
    * The Max-Age cookie option
@@ -50,13 +40,13 @@ interface SetCookieOptions {
 }
 
 /**
- * Sets a cookie using the set-cookie response header
- * @param res The http response
+ * Prepares a Set-Cookie value string
  * @param name The name of the cookie
  * @param value The value to set
  * @param options Additional options
+ * @returns {string}
  */
-export function setCookie(res: any, name: string, value: string, options: SetCookieOptions = {}) {
+export function prepareSetCookie(name: string, value: string, options: SetCookieOptions = {}): string {
   let cookieValue = [`${name}=${value}`]
 
   if (options.maxAge) {
@@ -67,5 +57,26 @@ export function setCookie(res: any, name: string, value: string, options: SetCoo
     cookieValue.push(`Expires=${options.expires.toUTCString()}`)
   }
 
-  res.setHeader('Set-Cookie', cookieValue.join('; '))
+  return cookieValue.join('; ')
+}
+
+/**
+ * Prepares a Set-Cookie value string for cookie needs to be removed (sets negative expiry time)
+ *
+ * @param {string} cookieName Cookie name
+ * @returns {string}
+ */
+export function prepareKillCookie(cookieName: string): string {
+  return prepareSetCookie(cookieName, 'EXP', { expires: new Date(0) }) // 1 Jan 1970
+}
+
+/**
+ * Sets multiple cookies into response object
+ *
+ * @param {Response} res Response object
+ * @param {string[]} cookies Array of Set-Cookie response header values
+ * @returns {string}
+ */
+export function setCookies(res: any, cookies: string[]): void {
+  res.setHeader('Set-Cookie', cookies)
 }
