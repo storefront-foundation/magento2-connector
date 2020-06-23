@@ -2,7 +2,7 @@ import get from 'lodash/get'
 import fetchGenerateToken from './customer/generateToken'
 import fetchCustomerCart from './customer/cart'
 import fetchMergeCarts from './common/mergeCarts'
-import { getCookieValue, killCookie } from '../helpers/nodeCookieHelpers'
+import { getCookieValue, killCookie, setCookie } from '../helpers/nodeCookieHelpers'
 import { COOKIES } from '../constants'
 
 export default async function signIn(req, res) {
@@ -39,8 +39,8 @@ export default async function signIn(req, res) {
     // Docs: https://devdocs.magento.com/guides/v2.3/graphql/queries/customer.html
     // ...
 
-    setCookie(res, COOKIES.M2_CUSTOMER_TOKEN, token, { maxAge: 1000 * 3600 * 24 * 30 }) // set customer token cookie for 30 days
-    setCookie(res, COOKIES.M2_CUSTOMER_CART_ID, customerCartId, { maxAge: 1000 * 3600 * 24 * 30 }) // set customer cart ID cookie for 30 days
+    setCookie(res, COOKIES.M2_CUSTOMER_TOKEN, token, { maxAge: 3600 * 24 * 30 }) // set customer token cookie for 30 days
+    setCookie(res, COOKIES.M2_CUSTOMER_CART_ID, customerCartId, { maxAge: 3600 * 24 * 30 }) // set customer cart ID cookie for 30 days
     killCookie(res, COOKIES.M2_GUEST_CART_ID) // kill guest cart ID cookie just in case (prevents possible cart merges issues)
 
     return res.status(200).send({

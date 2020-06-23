@@ -34,7 +34,7 @@ export function getCookieValue(req: Request | any, cookieName: string): string |
  * @param {String} cookieName Cookie name
  */
 export function killCookie(res: any, name: string): void {
-  setCookie(res, name, 'expire', { maxAge: -1000 * 3600 * 24 * 365 * 20 })
+  setCookie(res, name, 'expire', { expires: new Date(0) }) // 1 Jan 1970
 }
 
 interface SetCookieOptions {
@@ -42,6 +42,11 @@ interface SetCookieOptions {
    * The Max-Age cookie option
    */
   maxAge?: number
+
+  /**
+   * The Expires cookie option
+   */
+  expires?: Date
 }
 
 /**
@@ -55,8 +60,12 @@ export function setCookie(res: any, name: string, value: string, options: SetCoo
   let cookieValue = [`${name}=${value}`]
 
   if (options.maxAge) {
-    cookieValue.push(options.maxAge.toString())
+    cookieValue.push(`Max-Age=${options.maxAge}`)
   }
 
-  res.setHeader('set-cookie', cookieValue.join(';')) // ~20 years ago expiry
+  if (options.expires && !options.maxAge) {
+    cookieValue.push(`Expires=${options.expires.toUTCString()}`)
+  }
+
+  res.setHeader('Set-Cookie', cookieValue.join('; '))
 }

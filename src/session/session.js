@@ -15,8 +15,8 @@ export default async function session(req, res) {
       })
     }
     const { cart, customerCartId } = customerCartData
-    setCookie(res, COOKIES.M2_CUSTOMER_TOKEN, tokenCookieValue, { maxAge: 1000 * 3600 * 24 * 30 }) // renew customer token cookie for 30 more days
-    setCookie(res, COOKIES.M2_CUSTOMER_CART_ID, customerCartId, { maxAge: 1000 * 3600 * 24 * 30 }) // set/renew customer cart ID cookie for 30 days
+    setCookie(res, COOKIES.M2_CUSTOMER_TOKEN, tokenCookieValue, { maxAge: 3600 * 24 * 30 }) // renew customer token cookie for 30 more days
+    setCookie(res, COOKIES.M2_CUSTOMER_CART_ID, customerCartId, { maxAge: 3600 * 24 * 30 }) // set/renew customer cart ID cookie for 30 days
     killCookie(res, COOKIES.M2_GUEST_CART_ID) // kill guest cart ID cookie just in case (prevents possible cart merges issues)
     return res.status(200).json({
       signedIn: true,
@@ -37,7 +37,7 @@ export default async function session(req, res) {
     }
     const { cart } = guestCartData
     setCookie(res, COOKIES.M2_GUEST_CART_ID, guestCartIdCookieValue, {
-      maxAge: 1000 * 3600 * 24 * 7,
+      maxAge: 3600 * 24 * 7,
     }) // renew cookie for 7 more days
     return res.status(200).json({
       signedIn: false,
@@ -53,7 +53,7 @@ export default async function session(req, res) {
     })
   }
   const { guestCartId } = obtainSessionData
-  setCookie(res, COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 1000 * 3600 * 24 * 7 }) // set guest cart id cookie for 7 days
+  setCookie(res, COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 3600 * 24 * 7 }) // set guest cart id cookie for 7 days
   return res.status(200).json({
     signedIn: false,
     cart: {
