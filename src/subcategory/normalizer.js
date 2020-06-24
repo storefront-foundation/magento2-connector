@@ -38,7 +38,6 @@ function getSwatches(rawProduct) {
       text,
       image: {
         src: `https://via.placeholder.com/48x48/${rgb.replace('#', '')}?text=%20`,
-        type: 'image',
         alt: `${text} swatch`,
       },
       media: {
