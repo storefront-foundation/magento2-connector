@@ -1,5 +1,6 @@
 import fetchSearch from './fetcher';
 import normalizeSearch from './normalizer';
+import search from './search';
 
 /**
  * Usage example (in handler):
@@ -12,6 +13,7 @@ import normalizeSearch from './normalizer';
  * ...
  * ...
  */
+export default search;
 export {
   fetchSearch,
   normalizeSearch,
