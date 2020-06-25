@@ -18,11 +18,11 @@ export default async function subcategory(
 ) {
   return withAppData(req, async () => {
     if (!isArray(slug)) {
-      slug = slug.split('/')
+      slug = (slug || '').split('/')
     }
 
-    const isLanding = get(slug, 'length', 0) === 1 // 1st level pages (/women, /men, etc.) are landings
     const isSearch = !isEmpty(q)
+    const isLanding = get(slug, 'length', 0) === 1 && !isSearch // 1st level pages (/women, /men, etc.) are landings
     const urlKey = (last(slug) || '').replace('.html', '')
 
     if (sort === 'rating') {
