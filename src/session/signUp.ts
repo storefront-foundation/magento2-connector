@@ -1,7 +1,8 @@
 import get from 'lodash/get'
 import createCustomer from './customer/createCustomer'
+import SignUpResponse from '../types/SignUpResponse'
 
-export default async function signUp(req, res) {
+export default async function signUp(req, res): Promise<SignUpResponse> {
   try {
     const body = JSON.parse(get(req, 'body', '{}'))
     const firstName = get(body, 'firstName')

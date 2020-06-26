@@ -9,7 +9,7 @@ async function fetcher({
   token = null,
   sku,
   quantity = 1,
-}) {
+}): Promise<any> {
   const query = addSimpleProductsToCartQuery({
     cartId,
     sku,

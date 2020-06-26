@@ -3,8 +3,9 @@ import revokeToken from './customer/revokeToken'
 import obtainSession from './guest/obtainSession'
 import { COOKIES } from '../constants'
 import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
+import Session from '../types/Session'
 
-export default async function signOut(req, res) {
+export default async function signOut(req, res): Promise<Session> {
   try {
     const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
     if (!token) {

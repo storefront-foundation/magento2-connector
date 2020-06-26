@@ -1,4 +1,5 @@
 import cartItemProductDefaultSchema from '../../schemas/cartItemProductDefaultSchema';
+import GraphQlQuery from '../../../types/GraphQlQuery'
 
 /**
  * Magento 2: common addSimpleProductsToCart Graph QL query
@@ -8,7 +9,7 @@ const query = ({
   sku,
   quantity = 1,
   cartItemProductSchema = cartItemProductDefaultSchema,
-}) => ({
+}): GraphQlQuery => ({
   query: `
     mutation {
       addSimpleProductsToCart(

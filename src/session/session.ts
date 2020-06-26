@@ -3,8 +3,9 @@ import obtainSession from './guest/obtainSession'
 import guestCart from './guest/cart'
 import customerCart from './customer/cart'
 import { COOKIES } from '../constants'
+import Session from '../types/Session'
 
-export default async function session(req, res) {
+export default async function session(req, res): Promise<Session> {
   const cookiesToSet = [];
 
   // ### 1 - LOGGED IN SESSION

@@ -1,6 +1,7 @@
 import Cart from './Cart';
+import Error from './Error';
 
-export default interface Session {
+export default interface Session extends Error {
   /**
    * The user's login status
    */

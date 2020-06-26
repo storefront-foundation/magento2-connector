@@ -4,8 +4,9 @@ import fetchCustomerCart from './customer/cart'
 import fetchMergeCarts from './common/mergeCarts'
 import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
 import { COOKIES } from '../constants'
+import Session from '../types/Session'
 
-export default async function signIn(req, res) {
+export default async function signIn(req, res): Promise<Session> {
   try {
     const body = JSON.parse(get(req, 'body', '{}'))
     const email = get(body, 'email')
