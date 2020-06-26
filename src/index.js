@@ -1,6 +1,7 @@
 export { default as app } from './app';
 export { default as home } from './home';
 export { default as cart } from './cart';
+export { default as addToCartFromAmp } from './cart/addToCartFromAmp';
 export { default as cms } from './cms';
 export { default as config } from './config.js';
 export { default as fetchWithGraphQl } from './fetchWithGraphQl.js';
