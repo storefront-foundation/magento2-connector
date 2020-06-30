@@ -39,6 +39,10 @@ export default interface SearchResult {
    * HTML snippets from the CMS to display
    */
   cmsSlots: { [id: string]: CmsSlot }
+  /**
+   * Defines if the page is landing
+   */
+  isLanding?: boolean
 }
 
 export interface Facet {
