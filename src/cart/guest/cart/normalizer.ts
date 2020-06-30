@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
-// import Cart from '../../../types/Cart';
 import CartItem from '../../../types/CartItem';
 import CartResponse from '../../../types/CartResponse';
 

@@ -4,7 +4,7 @@
     "allowJs": true,
     "target": "es5",
     "esModuleInterop": true,
-    "lib": ["es2017", "dom"]
+    "lib": ["es2019", "dom"]
   },
   "include": [
     "./src/**/*"
