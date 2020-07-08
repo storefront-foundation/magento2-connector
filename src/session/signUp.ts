@@ -1,8 +1,9 @@
 import get from 'lodash/get'
 import createCustomer from './customer/createCustomer'
-import SignUpResponse from '../types/SignUpResponse'
+import signIn from './signIn'
+import Session from '../types/Session'
 
-export default async function signUp(req, res): Promise<SignUpResponse> {
+export default async function signUp(req, res): Promise<Session> {
   try {
     const body = JSON.parse(get(req, 'body', '{}'))
     const firstName = get(body, 'firstName')
@@ -19,9 +20,7 @@ export default async function signUp(req, res): Promise<SignUpResponse> {
     if (signUpData.error) {
       throw new Error(signUpData.error)
     }
-    return res.status(200).send({
-      success: true,
-    })
+    return signIn(req, res)
   } catch (error) {
     return res.status(400).send({
       error: get(error, 'message', 'An error occurred during sign up'),
