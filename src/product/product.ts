@@ -2,8 +2,9 @@ import fetch from './fetcher'
 import normalize from './normalizer'
 import withAppData from '../app/withAppData'
 import Result from '../types/Result'
+import ProductPageData from '../types/ProductPageData'
 
-export default async function product({ id, color, size }, req, res): Promise<Result<any>> {
+export default async function product({ id, color, size }, req, res): Promise<Result<ProductPageData>> {
   return withAppData(req, async () => {
     id = id.replace('.html', '')
     const product = normalize(await fetch(id), id)
