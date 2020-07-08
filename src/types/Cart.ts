@@ -1,8 +1,3 @@
-import CartItem from './CartItem'
+import Cart from 'react-storefront-connector/Cart'
 
-export default interface Cart {
-  /**
-   * Cart items
-   */
-  items: CartItem[],
-}
+export default Cart

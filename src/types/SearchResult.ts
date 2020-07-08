@@ -1,95 +1,20 @@
-import Media from './Media'
-import ProductSummary from './ProductSummary'
-import CmsSlot from './CmsSlots'
+import _SearchResult from 'react-storefront-connector/SearchResult'
 
-export default interface SearchResult {
+export default interface SearchResult extends _SearchResult {
   /**
-   * the total number of matching items
+   * Page id
    */
-  total: number
+  id: string,
   /**
-   * the current page being returned
+   * Page name
    */
-  page: number
+  name: string,
   /**
-   * the total number of pages
+   * Page title
    */
-  totalPages: number
-  /**
-   * the filters that were applied
-   */
-  filters?: string[]
-  /**
-   * groups of filters to display
-   */
-  facets?: Facet[]
-  /**
-   * the sort that was applied
-   */
-  sort: string
-  /**
-   * available sort options to display
-   */
-  sortOptions: SortOption[]
-  /**
-   * Matching products
-   */
-  products: ProductSummary[]
-  /**
-   * HTML snippets from the CMS to display
-   */
-  cmsSlots: { [id: string]: CmsSlot }
+  title: string,
   /**
    * Defines if the page is landing
    */
   isLanding?: boolean
-}
-
-export interface Facet {
-  /**
-   * the name of the facet
-   */
-  name: string
-  /**
-   * determines the type of UI element displayed
-   */
-  ui: 'buttons' | 'checkboxes'
-  /**
-   * the filters in the group
-   */
-  options: Filter[]
-}
-
-export interface Filter {
-  /**
-   * the name of the filter
-   */
-  name: string
-  /**
-   * the code to include in the fetch call when selected
-   */
-  code: string
-  /**
-   * the swatch image to display
-   */
-  image?: Media
-  /**
-   * A css color code to display in a swatch
-   */
-  css?: string
-  /**
-   * The number of products that match this facet
-   */
-  matches?: number
-}
-
-export interface SortOption {
-  /**
-   * the option text to display
-   */
-  name: string
-  /**
-   * the code to include in the fetch call when selected
-   */
-  code: string
 }

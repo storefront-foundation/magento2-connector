@@ -1,16 +1,3 @@
-export default interface Media {
-  /**
-   * Source URL
-   */
-  src: string
-  
-  /**
-   * Type of media source (image or video)
-   */
-  type: 'image' | 'video'
+import Media from 'react-storefront-connector/Media'
 
-  /**
-   * Alt param of image
-   */
-  alt?: string
-}
+export default Media

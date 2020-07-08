@@ -1,6 +1,6 @@
-import MenuItem from './MenuItem'
+import AppData from 'react-storefront-connector/AppData'
 
-export default interface AppData {
-  menu: MenuItem
-  tabs: MenuItem[]
-}
+/**
+ * App-level data needed during server-side rendering to populate the main menu and navigation tabs
+ */
+export default AppData

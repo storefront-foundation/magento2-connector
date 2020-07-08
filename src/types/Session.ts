@@ -1,21 +1,4 @@
-import Cart from './Cart';
 import Error from './Error';
+import _Session from 'react-storefront-connector/Session'
 
-export default interface Session extends Error {
-  /**
-   * The user's login status
-   */
-  signedIn: boolean
-  /**
-   * Cart data
-   */
-  cart: Cart,
-  /**
-   * The user's preferred currency
-   */
-  currency?: string
-  /**
-   * The user's email
-   */
-  email?: string
-}
+export default interface Session extends _Session, Error {}

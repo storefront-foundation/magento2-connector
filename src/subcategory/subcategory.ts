@@ -12,13 +12,16 @@ import last from 'lodash/last'
 import withAppData from '../app/withAppData'
 
 import SearchResult from '../types/SearchResult'
+import Result from '../types/Result'
 
 export default async function subcategory(
-  { slug, q = '', filters, sort = 'position: DESC', page = 1 },
+  params,
   req,
   res
-): Promise<SearchResult> {
+): Promise<Result<SearchResult>> {
   return withAppData(req, async () => {
+    let { slug, q = '', filters, sort = 'position: DESC', page = 1 } = params
+
     if (!isArray(slug)) {
       slug = (slug || '').split('/')
     }
