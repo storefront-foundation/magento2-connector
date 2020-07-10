@@ -10,12 +10,4 @@ export interface Product extends _Product {
    * Defines if the type is configurable product
    */
   isConfigurableProduct?: boolean
-  /**
-   * Defines if the product has size options
-   */
-  hasSizes?: boolean
-  /**
-   * Defines if the product has color options
-   */
-  hasColors?: boolean
 }

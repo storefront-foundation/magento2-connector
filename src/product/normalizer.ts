@@ -140,8 +140,6 @@ function normalizer(rawData, productId): Product | null {
 
   const colors = getColors(rawProduct);
   const sizes = getSizes(rawProduct);
-  const hasColors = !isEmpty(colors);
-  const hasSizes = !isEmpty(sizes);
   const isConfigurableProduct = !isEmpty(get(rawProduct, 'configurable_options'));
   const price = get(rawProduct, 'price_range.maximum_price.final_price.value');
 
@@ -156,9 +154,7 @@ function normalizer(rawData, productId): Product | null {
     price,
     priceText: `$${price.toFixed(2)}`,
     sizes,
-    hasSizes,
     colors,
-    hasColors,
     thumbnail: getThumbnail(rawProduct),
     media: getMedia(rawProduct),
     specs: specsToHtml(getSpecs(rawProduct, rawCustomAttributes)),

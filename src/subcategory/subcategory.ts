@@ -11,14 +11,14 @@ import isEmpty from 'lodash/isEmpty'
 import last from 'lodash/last'
 import withAppData from '../app/withAppData'
 
-import SearchResult from '../types/SearchResult'
+import SubcategoryPageData from 'react-storefront-connector/SubcategoryPageData'
 import Result from 'react-storefront-connector/Result'
 
 export default async function subcategory(
   params,
   req,
   res
-): Promise<Result<SearchResult>> {
+): Promise<Result<SubcategoryPageData>> {
   return withAppData(req, async () => {
     let { slug, q = '', filters, sort = 'position: DESC', page = 1 } = params
 
