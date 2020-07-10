@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
-import CartItem from '../../../types/CartItem';
+import CartItem from 'react-storefront-connector/CartItem';
 import CartResponse from '../../../types/CartResponse';
 
 /**

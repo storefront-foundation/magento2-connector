@@ -12,7 +12,7 @@ import last from 'lodash/last'
 import withAppData from '../app/withAppData'
 
 import SearchResult from '../types/SearchResult'
-import Result from '../types/Result'
+import Result from 'react-storefront-connector/Result'
 
 export default async function subcategory(
   params,

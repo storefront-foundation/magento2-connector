@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import { Product } from '../types/ProductPageData'
-import Media from '../types/Media'
+import Media from 'react-storefront-connector/Media'
 
 function getThumbnail(rawProduct): Media {
   return {

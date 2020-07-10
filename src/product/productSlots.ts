@@ -1,4 +1,4 @@
-import CmsSlots from '../types/CmsSlots'
+import CmsSlots from 'react-storefront-connector/CmsSlots'
 
 /**
  * @TODO: implement

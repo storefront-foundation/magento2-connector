@@ -1,7 +1,7 @@
 import fetch from './fetcher'
 import normalize from './normalizer'
 import withAppData from '../app/withAppData'
-import Result from '../types/Result'
+import Result from 'react-storefront-connector/Result'
 import ProductPageData from '../types/ProductPageData'
 
 export default async function product({ id, color, size }, req, res): Promise<Result<ProductPageData>> {

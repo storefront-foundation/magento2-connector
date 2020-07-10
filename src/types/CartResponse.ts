@@ -1,4 +1,4 @@
-import Cart from './Cart'
+import Cart from 'react-storefront-connector/Cart'
 import Error from './Error'
 
 export default interface CartResponse extends Error {
