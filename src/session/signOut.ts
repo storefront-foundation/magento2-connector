@@ -3,7 +3,7 @@ import revokeToken from './customer/revokeToken'
 import obtainSession from './guest/obtainSession'
 import { COOKIES } from '../constants'
 import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
-import Session from '../types/Session'
+import Session from 'react-storefront-connector/Session'
 
 export default async function signOut(req, res): Promise<Session> {
   try {

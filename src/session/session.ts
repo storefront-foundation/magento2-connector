@@ -3,7 +3,7 @@ import obtainSession from './guest/obtainSession'
 import guestCart from './guest/cart'
 import customerCart from './customer/cart'
 import { COOKIES } from '../constants'
-import Session from '../types/Session'
+import Session from 'react-storefront-connector/Session'
 
 export default async function session(req, res): Promise<Session> {
   const cookiesToSet = [];

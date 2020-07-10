@@ -4,7 +4,7 @@ import fetchCustomerCart from './customer/cart'
 import fetchMergeCarts from './common/mergeCarts'
 import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
 import { COOKIES } from '../constants'
-import Session from '../types/Session'
+import Session from 'react-storefront-connector/Session'
 
 export default async function signIn(req, res): Promise<Session> {
   try {

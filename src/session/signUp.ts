@@ -1,7 +1,7 @@
 import get from 'lodash/get'
 import createCustomer from './customer/createCustomer'
 import signIn from './signIn'
-import Session from '../types/Session'
+import Session from 'react-storefront-connector/Session'
 
 export default async function signUp(req, res): Promise<Session> {
   try {
