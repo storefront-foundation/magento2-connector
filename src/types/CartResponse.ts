@@ -1,7 +1,7 @@
-import Cart from 'react-storefront-connector/Cart'
+import _CartResponse from 'react-storefront-connector/CartResponse'
 import Error from './Error'
 
-export default interface CartResponse extends Error {
+export default interface CartResponse extends _CartResponse, Error {
   /**
    * The ID of guest cart
    */
@@ -11,9 +11,4 @@ export default interface CartResponse extends Error {
    * The ID of customer cart
    */
   customerCartId?: string
-
-  /**
-   * Cart data
-   */
-  cart?: Cart
 }
