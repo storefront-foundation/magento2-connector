@@ -6,17 +6,13 @@ import {
 import { COOKIES } from '../constants'
 import getError from '../helpers/getError'
 import get from 'lodash/get'
-import CartResponse from '../types/CartResponse';
+import CartResponse from '../types/CartResponse'
+import obtainSession from '../session/guest/obtainSession'
 
 /**
  * Magento 2: common -> addToCart
  */
-async function fetchAddToCart({
-  token,
-  cartId,
-  sku,
-  quantity
-}): Promise<CartResponse> {
+async function fetchAddToCart({ token, cartId, sku, quantity }): Promise<CartResponse> {
   const rawData = await fetchAddSimpleProductsToCart({
     token,
     cartId,
@@ -40,28 +36,27 @@ async function fetchAddToCart({
 /**
  * add to cart handler
  */
-export default async function addToCart(req, res): Promise<CartResponse> {
-  const cartId = getCookieValue(req, COOKIES.M2_GUEST_CART_ID) || getCookieValue(req, COOKIES.M2_CUSTOMER_CART_ID)
-  const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
+export default async function addToCart(product, quantity, req, res): Promise<CartResponse> {
+  const cartId =
+    getCookieValue(req, COOKIES.M2_GUEST_CART_ID) ||
+    getCookieValue(req, COOKIES.M2_CUSTOMER_CART_ID) ||
+    (await obtainSession()) // will get here in AMP
 
-  const body = JSON.parse(get(req, 'body', '{}'));
-  const product = get(body, 'product')
-  const quantity = get(body, 'quantity')
+  const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
+  const body = JSON.parse(get(req, 'body', '{}'))
   const size = get(body, 'size')
   const color = get(body, 'color')
-
   let sku = get(product, 'sku')
+
   if (get(product, 'isConfigurableProduct') && size && color) {
     sku += `-${size}-${color}`
   }
 
   const responseData = await fetchAddToCart({ token, cartId, sku, quantity })
+
   if (responseData.error) {
-    return res.status(400).json({
-      error: responseData.error,
-    })
+    throw new Error(responseData.error)
+  } else {
+    return responseData
   }
-  return res.status(200).json({
-    ...responseData,
-  })
 }
