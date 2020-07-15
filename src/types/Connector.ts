@@ -2,7 +2,8 @@ import Connector from 'react-storefront-connector'
 import home from '../home';
 import cart from '../cart';
 import addToCart from '../cart/addToCart';
-import addToCartFromAmp from '../cart/addToCartFromAmp';
+import updateCart from '../cart/updateCart';
+import removeCartItem from '../cart/removeCartItem';
 import product from '../product';
 import productSlots from '../product/productSlots';
 import productSuggestions from '../product/productSuggestions';
@@ -19,9 +20,10 @@ export default class Magento2Connector implements Connector {
   home = home
   cart = cart
   addToCart = addToCart
+  updateCart = updateCart
+  removeCartItem = removeCartItem
   product = product
   session = session
-  addToCartFromAmp = addToCartFromAmp
   signIn = signIn
   signOut = signOut
   signUp = signUp
