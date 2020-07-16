@@ -1,39 +1,39 @@
-import get from 'lodash/get'
 import revokeToken from './customer/revokeToken'
 import obtainSession from './guest/obtainSession'
 import { COOKIES } from '../constants'
-import { getCookieValue, prepareKillCookie, prepareSetCookie, setCookies } from '../helpers/nodeCookieHelpers'
+import {
+  getCookieValue,
+  prepareKillCookie,
+  prepareSetCookie,
+  setCookies,
+} from '../helpers/nodeCookieHelpers'
 import Session from 'react-storefront-connector/Session'
 
 export default async function signOut(req, res): Promise<Session> {
-  try {
-    const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
-    if (!token) {
-      throw new Error(`${COOKIES.M2_CUSTOMER_TOKEN} cookie doesn\'t exist`)
-    }
+  const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
 
-    const { result } = await revokeToken(token)
-    if (!result) {
-      throw new Error('An error occured during customer token revoke')
-    }
+  if (!token) {
+    throw new Error(`${COOKIES.M2_CUSTOMER_TOKEN} cookie doesn\'t exist`)
+  }
 
-    // obtain new session after successful sign out
-    const { guestCartId } = await obtainSession()
-    const cookiesToSet = []
-    cookiesToSet.push(prepareSetCookie(COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 3600 * 24 * 7 })) // set guest cart id cookie for 7 days
-    cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_TOKEN)) // kill customer token cookie
-    cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_CART_ID)) // kill customer cart id cookie
-    setCookies(res, cookiesToSet)
+  const { result } = await revokeToken(token)
 
-    return res.status(200).send({
-      signedIn: false,
-      cart: {
-        items: [],
-      },
-    })
-  } catch (error) {
-    return res.status(400).send({
-      error: get(error, 'message', 'An error occurred during sign out'),
-    })
+  if (!result) {
+    throw new Error('An error occured during customer token revoke')
+  }
+
+  // obtain new session after successful sign out
+  const { guestCartId } = await obtainSession()
+  const cookiesToSet = []
+  cookiesToSet.push(
+    prepareSetCookie(COOKIES.M2_GUEST_CART_ID, guestCartId, { maxAge: 3600 * 24 * 7 })
+  ) // set guest cart id cookie for 7 days
+  cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_TOKEN)) // kill customer token cookie
+  cookiesToSet.push(prepareKillCookie(COOKIES.M2_CUSTOMER_CART_ID)) // kill customer cart id cookie
+  setCookies(res, cookiesToSet)
+
+  return {
+    signedIn: false,
+    cart: { items: [] },
   }
 }
