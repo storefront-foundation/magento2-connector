@@ -1,5 +1,5 @@
 import CartResponse from '../types/CartResponse'
-import updateCart from './updateCart'
+import updateCart from './updateCartItem'
 
 /**
  * removeCartItem handler
