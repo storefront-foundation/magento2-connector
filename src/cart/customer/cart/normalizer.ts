@@ -1,17 +1,12 @@
 import get from 'lodash/get';
 import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
-import Cart from '../../../types/Cart';
-import CartItem from '../../../types/CartItem';
-
-interface CustomerCartResult {
-  customerCartId: string
-  cart: Cart
-}
+import CartItem from 'react-storefront-connector/CartItem';
+import CartResponse from '../../../types/CartResponse';
 
 /**
  * Magento 2: customer cart normalizer
  */
-function normalizer(rawData: any): CustomerCartResult {
+function normalizer(rawData: any): CartResponse {
   const rawCartData = get(rawData, 'data.customerCart', null);
   const customerCartId = get(rawCartData, 'id', null);
   const items: CartItem[] = cartItemsNormalizer(get(rawCartData, 'items', []));

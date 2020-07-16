@@ -2,8 +2,8 @@ import { fetchMenu, normalizeMenu } from '../menu';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
-import MenuItem from '../types/MenuItem';
-import AppData from '../types/AppData';
+import MenuItem from 'react-storefront-connector/MenuItem'
+import AppData from 'react-storefront-connector/AppData';
 
 function normalizeMenuItems(items: any[]): MenuItem[] {
   if (isEmpty(items)) {

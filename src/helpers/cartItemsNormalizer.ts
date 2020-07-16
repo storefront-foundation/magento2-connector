@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import CartItem from '../types/CartItem';
+import CartItem from 'react-storefront-connector/CartItem';
 
 function cartItemsNormalizer(items: any[]): CartItem[] {
   return items.map((item: any, index: number): CartItem => {
