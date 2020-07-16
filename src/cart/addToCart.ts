@@ -43,7 +43,7 @@ export default async function addToCart(product, quantity, req, res): Promise<Ca
     (await obtainSession()) // will get here in AMP
 
   const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN)
-  const body = JSON.parse(get(req, 'body', '{}'))
+  const body = get(req, 'body', {})
   const size = get(body, 'size')
   const color = get(body, 'color')
   let sku = get(product, 'sku')

@@ -4,7 +4,10 @@ import Result from 'react-storefront-connector/Result'
 export default async function home(req, res): Promise<Result<any>> {
   const data = await withAppData(req, () => Promise.resolve({
     title: `Home`,
-    home: {},
+    slots: {
+      heading: 'Home',
+      description: 'Welcome!',
+    },
     breadcrumbs: [
       {
         text: 'Home',

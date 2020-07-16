@@ -1,5 +1,7 @@
 export { default as home } from './home'
 export { default as addToCart } from './cart/addToCart'
+export { default as updateCart } from './cart/updateCart'
+export { default as removeCartItem } from './cart/removeCartItem'
 export { default as cart } from './cart'
 export { default as fetchWithGraphQl } from './fetchWithGraphQl'
 export { default as product } from './product'
