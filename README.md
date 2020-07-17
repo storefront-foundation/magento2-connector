@@ -1,6 +1,6 @@
 # Magento 2 Connector
 
-[Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/) connector for [React Storefront](https://github.com/react-storefront-community/react-storefront).
+[Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/) connector for [React Storefront](https://github.com/react-storefront-foundation/react-storefront).
 
 ## Requirements
 
@@ -13,14 +13,15 @@ See `.env.sample` file as an example of adding env variable via [dotenv](https:/
 Initialize config environment variables by using
 
 ```js
-require('dotenv').config();
-``` 
+require('dotenv').config()
+```
 
 in one of your server files (for example `server.js` in NextJS).
 
 Then, you can simply import normalizer and fetch helper in your backend handlers.
 
 ### Product data:
+
 ```js
 import { fetchProduct, normalizeProduct } from 'react-storefront-magento2-connector/product';
 ...
@@ -31,6 +32,7 @@ const product = normalizeProduct(rawProduct, productId);
 ```
 
 ### Product reviews:
+
 ```js
 import fetchProductReviews from 'react-storefront-magento2-connector/product/reviews/fetchProductReviews';
 ...
@@ -150,12 +152,8 @@ if (error) {
  ...
 ```
 
-
-
-
-
 ## Examples
 
 - See `/examples/react/` for [ReactJS](https://reactjs.org/) stuff examples
-- See `/examples/rsf/` for [React Storefront](https://github.com/react-storefront-community/react-storefront) handlers examples
+- See `/examples/rsf/` for [React Storefront](https://github.com/react-storefront-foundation/react-storefront) handlers examples
 - See `/examples/next/` for [NextJS](https://nextjs.org/) handlers examples (they are also can be used in RSF v7+)
