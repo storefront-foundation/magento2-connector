@@ -1,6 +1,6 @@
 # Magento 2 Connector
 
-[Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/) connector for [React Storefront](https://github.com/react-storefront-foundation/react-storefront).
+[Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/) connector for [React Storefront](https://github.com/storefront-foundation/react-storefront).
 
 ## Requirements
 
@@ -155,5 +155,5 @@ if (error) {
 ## Examples
 
 - See `/examples/react/` for [ReactJS](https://reactjs.org/) stuff examples
-- See `/examples/rsf/` for [React Storefront](https://github.com/react-storefront-foundation/react-storefront) handlers examples
+- See `/examples/rsf/` for [React Storefront](https://github.com/storefront-foundation/react-storefront) handlers examples
 - See `/examples/next/` for [NextJS](https://nextjs.org/) handlers examples (they are also can be used in RSF v7+)
