@@ -1,159 +1,78 @@
 # Magento 2 Connector
 
-[Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/) connector for [React Storefront](https://github.com/storefront-foundation/react-storefront).
+The [React Storefront](https://github.com/storefront-foundation/react-storefront) headless ecommerce connector for [Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/). 
+
+This guide covers how to get up and running with the Magento 2 Connector. For information on connectors in general and how to write your own connector refer to the [React Storefront Connectors](https://docs.reactstorefront.io/guides/connectors) documentation.
 
 ## Requirements
 
-`M2_CONFIG_HOST` Node.js Environment Variable defining your origin site based on Magento 2.
+You will need a Magento 2 (sometimes referred to as "M2") backend to try out the connector. 
 
-See `.env.sample` file as an example of adding env variable via [dotenv](https://www.npmjs.com/package/dotenv). You can also check [this guide](https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html) to get more info about Node.js Environment Variables.
+## Running Locally
 
-## Usage
+Create a new React Storefront app using version 8.14.0 or later:
 
-Initialize config environment variables by using
-
-```js
-require('dotenv').config()
+```
+npm create react-storefront@^8.014.0 my-m2-app
 ```
 
-in one of your server files (for example `server.js` in NextJS).
+Next `cd` into your created application and install the Magento2 connector:
 
-Then, you can simply import normalizer and fetch helper in your backend handlers.
-
-### Product data:
-
-```js
-import { fetchProduct, normalizeProduct } from 'react-storefront-magento2-connector/product';
-...
-
-const rawProduct = await fetchProduct(productId);
-// normalize it for React Storefront https://docs.reactstorefront.io/guides/product
-const product = normalizeProduct(rawProduct, productId);
+```
+cd my-m2-app
+npm install react-storefront-magento2-connector
 ```
 
-### Product reviews:
+Next configure the `M2_CONFIG_HOST` environment variable in `.env` file to point to your Magento2 backend. See `.env.sample` file as an example of adding env variable via [dotenv](https://www.npmjs.com/package/dotenv). You can also check [this guide](https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html) to get more info about Node.js Environment Variables. For example, your `.env` file may look like:
 
-```js
-import fetchProductReviews from 'react-storefront-magento2-connector/product/reviews/fetchProductReviews';
-...
-// Magento API returns HTML as result for reviews, so no need to normalize the data
-const data = await fetchProductReviews(productId);
-...
+```
+LEGACY_BACKEND_DOMAIN=www.my-magento-site.com
+LEGACY_BACKEND_HOST_HEADER=www.my-magento-site.com
+M2_CONFIG_HOST=http://www.my-magento-site.com
 ```
 
-### CMS slots:
+Finally set the connector in your `next.config.js` file. By default this file is set to use the `react-storefront/mock-connector` as shown below:
 
-```js
- import { fetchCmsBlocks, normalizeCmsBlocks } from 'react-storefront-magento2-connector/cms/blocks';
- ...
- // identifiers is a string with CMS block id
- const rawData = await fetchCmsBlocks({ identifiers });
- const data = normalizeCmsBlocks(rawData);
- ...
+```
+module.exports = withReactStorefront({
+
+  // ... Some code
+  
+  connector: 'react-storefront/mock-connector',
+
+  // ... More code
 ```
 
-### Search
+Change this line to use the `react-storefront-magento2-connector` as shown below:
 
-```js
- import { fetchSearch, normalizeSearch } from 'react-storefront-magento2-connector/search';
- ...
-//  where "search" is a search term
- const rawData = await fetchSearch({ search });
-//  normalize it to follow React Storefront data contract https://docs.reactstorefront.io/guides/search
- const data = normalizeSearch(rawData);
- ...
+```
+module.exports = withReactStorefront({
+
+  // ... Some code
+  
+  connector: 'react-storefront-magento2-connector',
+
+  // ... More code
 ```
 
-### Subcategory
+Now you can run your project locally,
 
-#### Subcategory data
-
-```js
- import { fetchSubcategory, normalizeSubcategory } from 'react-storefront-magento2-connector/subcategory';
- ...
- const rawData = await fetchSubcategory({ categoryId });
-//  normalize data to follow React Storefront data contract https://docs.reactstorefront.io/guides/subcategory
- const { id, name } = normalizeSubcategory(rawData);
+```
+npm start
 ```
 
-#### Subcategory id by URL key
+And then visit http://127.0.0.1:3000 in your browser.
 
-```js
- import { fetchSubcategoryId, normalizeSubcategoryId } from 'react-storefront-magento2-connector/subcategory/id';
- ...
- const rawData = await fetchSubcategoryId({ urlKey });
- const id = normalizeSubcategoryId(rawData);
- ...
+## Deploying to the Moovweb XDN
+
+The front-end React Storefront can be hosted anywhere that supports Node and Express but it works great on the [Moovweb XDN](https://www.moovweb.com/). You can try the XDN for free by signing up [here](https://moovweb.app/signup?redirectTo=/). Once you have an account you can deploy it by running `xdn deploy`:
+
+```
+xdn deploy
 ```
 
-#### Nested subcategories by URL key
+Refer to the [XDN deployment guide](https://developer.moovweb.com/guides/deploying) for more information.
 
-```js
- import {
-  fetchSubcategorySubCategories,
-  normalizeSubcategorySubCategories,
- } from 'react-storefront-magento2-connector/subcategory/sub-categories';
- ...
- const rawData = await fetchSubcategorySubCategories({ urlKey });
- const data = normalizeSubcategorySubCategories(rawData);
- ...
-```
 
-### Menu
 
-```js
- import { fetchMenu, normalizeMenu } from 'react-storefront-magento2-connector/menu';
- ...
- const rawData = await fetchMenu({});
- const data = normalizeMenu(rawData);
- ...
-```
 
-### Helpers:
-
-Catch / properly handle error message from GraphQL response
-
-```js
-import getError from 'react-storefront-magento2-connector/helpers/getError';
-...
-const rawData = await fetchProduct(productId);
-
-const error = getError(rawData);
-if (error) {
-   return {
-     error,
-   };
-}
-```
-
-### Cart
-
-[Add to cart](examples/next/cart/common/addToCart.js)
-
-[Merge carts](examples/next/cart/common/mergeCarts.js)
-
-[Create customer](examples/next/cart/customer/createCustomer.js)
-
-[Generate token](examples/next/cart/customer/generateToken.js)
-
-[Revoke token](examples/next/cart/customer/revokeToken.js)
-
-[Guest cart](examples/next/cart/guest/cart.js)
-
-[Obtain session / create empty cart](examples/next/cart/guest/obtainSession.js)
-
-#### Get cart data
-
-```js
- import { fetchCart, normalizeCart } from 'react-storefront-magento2-connector/cart/customer/cart';
- ...
- const rawData = await fetchCart(token);
- const data = normalizeCart(rawData);
- ...
-```
-
-## Examples
-
-- See `/examples/react/` for [ReactJS](https://reactjs.org/) stuff examples
-- See `/examples/rsf/` for [React Storefront](https://github.com/storefront-foundation/react-storefront) handlers examples
-- See `/examples/next/` for [NextJS](https://nextjs.org/) handlers examples (they are also can be used in RSF v7+)
