@@ -5,7 +5,9 @@ import normalizeCreateEmptyCart from './normalizer';
 /**
  * Usage example (in handler):
  *
- * import { fetchCreateEmptyCart, normalizeCreateEmptyCart } from 'api/magento/cart/guest/createEmptyCart';
+ * import {
+ *   fetchCreateEmptyCart, normalizeCreateEmptyCart
+ * } from 'api/magento/cart/guest/createEmptyCart';
  * ...
  * ...
  * const rawData = await fetchCreateEmptyCart();

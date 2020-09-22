@@ -15,7 +15,7 @@ export default async function obtainSession(): Promise<CartResponse> {
   if (error) {
     return {
       error,
-    }
+    };
   }
 
   const guestCartId = normalizeCreateEmptyCart(rawData);

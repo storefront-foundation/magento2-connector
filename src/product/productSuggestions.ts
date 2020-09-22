@@ -1,10 +1,10 @@
-import { Product } from '../types/ProductPageData'
+import { Product } from '../types/ProductPageData';
 
 /**
  * @TODO: implement
  */
-function productSuggestions(params, req, res): Promise<Product[]> {
+function productSuggestions(/* params, req, res */): Promise<Product[]> {
   return Promise.resolve([]);
 }
 
-export default productSuggestions
+export default productSuggestions;

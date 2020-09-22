@@ -1,5 +1,5 @@
-import _CartResponse from 'react-storefront-connector/CartResponse'
-import Error from './Error'
+import _CartResponse from 'react-storefront-connector/CartResponse';
+import Error from './Error';
 
 export default interface CartResponse extends _CartResponse, Error {
   /**

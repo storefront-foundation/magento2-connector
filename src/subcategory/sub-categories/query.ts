@@ -1,4 +1,3 @@
-
 import GraphQlQuery from '../../types/GraphQlQuery';
 
 /**
