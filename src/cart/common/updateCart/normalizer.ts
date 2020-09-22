@@ -1,7 +1,7 @@
 import get from 'lodash/get';
-import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
 import CartItem from 'react-storefront-connector/CartItem';
-import CartResponse from '../../../types/CartResponse'
+import cartItemsNormalizer from '../../../helpers/cartItemsNormalizer';
+import CartResponse from '../../../types/CartResponse';
 
 /**
  * Magento 2: common updateCart normalizer

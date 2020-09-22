@@ -5,7 +5,9 @@ import normalizeGenerateToken from './normalizer';
 /**
  * Usage example (in handler):
  *
- * import { fetchGenerateToken, normalizeGenerateToken } from 'api/magento/cart/customer/generateToken';
+ * import {
+ *   fetchGenerateToken, normalizeGenerateToken,
+ * } from 'api/magento/cart/customer/generateToken';
  * ...
  * ...
  * const rawData = await fetchGenerateToken(email, password);

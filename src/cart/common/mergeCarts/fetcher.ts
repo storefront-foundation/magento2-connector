@@ -5,7 +5,8 @@ import mergeCartsQuery from './query';
  * Magento 2: common mergeCarts fetcher
  */
 async function fetcher(token, sourceCartId, destinationCartId): Promise<any> {
-  const rawData = await fetchWithGraphQl(mergeCartsQuery({ sourceCartId, destinationCartId }), token);
+  const query = mergeCartsQuery({ sourceCartId, destinationCartId });
+  const rawData = await fetchWithGraphQl(query, token);
   return rawData;
 }
 

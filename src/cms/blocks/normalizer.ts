@@ -8,8 +8,8 @@ import { host } from '../../config';
 function normalizer(rawData): any {
   const items = get(rawData, 'data.cmsBlocks.items', []);
   return {
-    items: items.map(item => {
-      const content = get(item, 'content', '')
+    items: items.map((item) => {
+      const content = get(item, 'content', '');
       const $content = cheerio.load(content);
       $content('a[href]').each((i, elem) => {
         const $link = $content(elem);
@@ -18,25 +18,25 @@ function normalizer(rawData): any {
 
         // @TODO: find a better way to create RSF router links
         if (
-          newHref.startsWith('/women') ||
-          newHref.startsWith('/men') ||
-          newHref.startsWith('/collections') || 
-          newHref.startsWith('/gear') || 
-          newHref.startsWith('/training') || 
-          newHref.startsWith('/sale')
+          newHref.startsWith('/women')
+          || newHref.startsWith('/men')
+          || newHref.startsWith('/collections')
+          || newHref.startsWith('/gear')
+          || newHref.startsWith('/training')
+          || newHref.startsWith('/sale')
         ) {
           newHref = `/s${newHref}`;
         } else {
           newHref = `/p${newHref}`;
         }
-        
+
         $link.attr('href', newHref);
       });
       return {
         ...item,
         content: $content.html(),
       };
-    })
+    }),
   };
 }
 

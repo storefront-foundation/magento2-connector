@@ -10,7 +10,8 @@ function getFullInnerSchema(menuItemFields, numberOfLevels): string {
     if (!fullInnerSchema.includes(childrenEmptyObject)) {
       fullInnerSchema += `${menuItemFieldsJoined}\n${childrenEmptyObject}`;
     } else {
-      fullInnerSchema = fullInnerSchema.replace(childrenEmptyObject, `children { ${menuItemFieldsJoined}\n${childrenEmptyObject} }`);
+      fullInnerSchema = fullInnerSchema
+        .replace(childrenEmptyObject, `children { ${menuItemFieldsJoined}\n${childrenEmptyObject} }`);
     }
   }
   fullInnerSchema = fullInnerSchema.replace(childrenEmptyObject, '');

@@ -1,10 +1,10 @@
-import CmsSlots from 'react-storefront-connector/CmsSlots'
+import CmsSlots from 'react-storefront-connector/CmsSlots';
 
 /**
  * @TODO: implement
  */
-function productSlots(params, req, res): CmsSlots {
-  return {}
+function productSlots(/* params, req, res */): CmsSlots {
+  return {};
 }
 
-export default productSlots
+export default productSlots;

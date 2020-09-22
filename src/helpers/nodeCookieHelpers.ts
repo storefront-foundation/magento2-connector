@@ -1,17 +1,17 @@
-import get from 'lodash/get'
+import get from 'lodash/get';
 
 function convertCookieStringToObject(cookiesStr: string): Object | null {
   return (
     (cookiesStr || '').split(';').reduce((cookiesObjectAcc, cookieStr) => {
-      let [name, value] = cookieStr.split('=')
-      name = (name || '').trim() // add trimming just in case
-      value = (value || '').trim()
+      let [name, value] = cookieStr.split('=');
+      name = (name || '').trim(); // add trimming just in case
+      value = (value || '').trim();
       return {
         ...cookiesObjectAcc,
         [name]: value,
-      }
+      };
     }, {}) || null
-  ) // return `null` instead of empty string
+  ); // return `null` instead of empty string
 }
 
 /**
@@ -22,9 +22,9 @@ function convertCookieStringToObject(cookiesStr: string): Object | null {
  * @return {String} Cookie value (null if missing)
  */
 export function getCookieValue(req: Request | any, cookieName: string): string | null {
-  const cookie = get(req, 'headers.cookie')
-  const cookies = convertCookieStringToObject(cookie)
-  return get(cookies, cookieName, null)
+  const cookie = get(req, 'headers.cookie');
+  const cookies = convertCookieStringToObject(cookie);
+  return get(cookies, cookieName, null);
 }
 
 interface SetCookieOptions {
@@ -47,17 +47,17 @@ interface SetCookieOptions {
  * @returns {string}
  */
 export function prepareSetCookie(name: string, value: string, options: SetCookieOptions = {}): string {
-  let cookieValue = [`${name}=${value}`]
+  const cookieValue = [`${name}=${value}`];
 
   if (options.maxAge) {
-    cookieValue.push(`Max-Age=${options.maxAge}`)
+    cookieValue.push(`Max-Age=${options.maxAge}`);
   }
 
   if (options.expires && !options.maxAge) {
-    cookieValue.push(`Expires=${options.expires.toUTCString()}`)
+    cookieValue.push(`Expires=${options.expires.toUTCString()}`);
   }
 
-  return cookieValue.join('; ')
+  return cookieValue.join('; ');
 }
 
 /**
@@ -67,7 +67,7 @@ export function prepareSetCookie(name: string, value: string, options: SetCookie
  * @returns {string}
  */
 export function prepareKillCookie(cookieName: string): string {
-  return prepareSetCookie(cookieName, 'EXP', { expires: new Date(0) }) // 1 Jan 1970
+  return prepareSetCookie(cookieName, 'EXP', { expires: new Date(0) }); // 1 Jan 1970
 }
 
 /**
@@ -78,5 +78,5 @@ export function prepareKillCookie(cookieName: string): string {
  * @returns {string}
  */
 export function setCookies(res: any, cookies: string[]): void {
-  res.setHeader('Set-Cookie', cookies)
+  res.setHeader('Set-Cookie', cookies);
 }

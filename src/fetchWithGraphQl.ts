@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch';
 import { graphQlHost } from './config';
-import GraphQlQuery from './types/GraphQlQuery'
+import GraphQlQuery from './types/GraphQlQuery';
 
 function fetchWithGraphQl(query: GraphQlQuery, token: string | null = null): Promise<any> {
   const authHeaders = token ? {
