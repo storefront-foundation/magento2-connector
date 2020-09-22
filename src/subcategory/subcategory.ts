@@ -56,7 +56,7 @@ function resolveCmsBlocksIdentifiers(urlKey) {
 export default async function subcategory(
   params,
   req,
-  // res,
+  _res,
 ): Promise<Result<SubcategoryPageData>> {
   return withAppData(req, async () => {
     const { q = '', page = 1 } = params;

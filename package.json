@@ -8,15 +8,13 @@
       "patterns": [
         "src"
       ],
-      "ignore": "*/index.js",
       "extensions": "js,ts",
       "quiet": false
     }
   },
   "scripts": {
     "release": "npm run build && cd dist && npm publish && cd ..",
-    "test": "jest",
-    "watch": "npm-watch",
+    "watch": "npm-watch push-build",
     "ts:watch": "tsc --watch",
     "ts:check": "tsc",
     "push-build": "npm run build && cd dist && yalc push && cd ..",

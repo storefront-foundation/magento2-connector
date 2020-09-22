@@ -34,7 +34,7 @@ async function fetchUC({
 /**
  * updateCart handler
  */
-export default async function updateCartItem(item, quantity, req/* , res */): Promise<CartResponse> {
+export default async function updateCartItem(item, quantity, req, _res): Promise<CartResponse> {
   const cartId = getCookieValue(req, COOKIES.M2_GUEST_CART_ID)
     || getCookieValue(req, COOKIES.M2_CUSTOMER_CART_ID);
   const token = getCookieValue(req, COOKIES.M2_CUSTOMER_TOKEN);
