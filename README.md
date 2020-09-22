@@ -18,7 +18,7 @@ You will need a Magento 2 (sometimes referred to as "M2") backend to try out the
 Create a new React Storefront app using version 8.14.0 or later:
 
 ```
-npm create react-storefront@^8.014.0 my-m2-app
+npm create react-storefront my-m2-app
 ```
 
 Next `cd` into your created application and install the Magento2 connector:
