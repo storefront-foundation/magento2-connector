@@ -3,7 +3,8 @@ import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
 import MenuItem from 'react-storefront-connector/MenuItem';
 import AppData from 'react-storefront-connector/AppData';
-import { fetchMenu, normalizeMenu } from '../menu';
+import fetchMenu from '../menu/fetchMenu';
+import menuNormalizer from '../menu/menuNormalizer';
 
 function normalizeMenuItems(items: any[]): MenuItem[] {
   if (isEmpty(items)) {
@@ -30,7 +31,7 @@ function getTabs(menu: MenuItem): MenuItem[] {
 
 export default async function getAppData(): Promise<AppData> {
   const rawData = await fetchMenu({ numberOfLevels: 3 });
-  const menuItems = normalizeMenu(rawData);
+  const menuItems = menuNormalizer(rawData);
   const menu: MenuItem = {
     header: 'header',
     footer: 'footer',

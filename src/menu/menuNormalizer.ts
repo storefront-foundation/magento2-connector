@@ -14,7 +14,7 @@ function normalizeItems(children): any[] {
 /**
  * Magento 2: menu normalizer
  */
-function normalizer(rawData): any[] {
+function menuNormalizer(rawData): any[] {
   const rawMenu = get(rawData, 'data.categoryList', [])
     .filter((menu) => get(menu, 'level') === 1)[0];
   const children = get(rawMenu, 'children', []);
@@ -22,4 +22,4 @@ function normalizer(rawData): any[] {
   return menu;
 }
 
-export default normalizer;
+export default menuNormalizer;
