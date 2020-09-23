@@ -12,6 +12,6 @@ export { default as signIn } from './session/signIn';
 export { default as signOut } from './session/signOut';
 export { default as signUp } from './session/signUp';
 export { default as subcategory } from './subcategory';
-export { default as search } from './search';
+export { default as search } from './search/search';
 
 export { default } from './types/Connector';

@@ -13,8 +13,8 @@ import signIn from '../session/signIn';
 import signOut from '../session/signOut';
 import signUp from '../session/signUp';
 import subcategory from '../subcategory';
-import search from '../search';
-import searchSuggestions from '../search/searchSuggestions';
+import search from '../search/search';
+import searchSuggestions from '../search/suggestions/searchSuggestions';
 
 export default class Magento2Connector implements Connector {
   home = home;

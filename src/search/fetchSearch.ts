@@ -4,7 +4,7 @@ import { fetchSubcategory } from '../subcategory';
  * Magento 2: search fetcher
  * > uses subcategory fetcher underneath
  */
-async function fetcher({
+async function fetchSearch({
   pageSize = 16,
   currentPage = 1,
   filter = '',
@@ -21,4 +21,4 @@ async function fetcher({
   return rawData;
 }
 
-export default fetcher;
+export default fetchSearch;
