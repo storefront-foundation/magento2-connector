@@ -1,5 +1,5 @@
 import cartItemProductDefaultSchema from '../../schemas/cartItemProductDefaultSchema';
-import GraphQlQuery from '../../../types/GraphQlQuery'
+import GraphQlQuery from '../../../types/GraphQlQuery';
 
 /**
  * Magento 2: common updateCart Graph QL query

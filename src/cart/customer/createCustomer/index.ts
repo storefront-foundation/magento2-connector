@@ -5,7 +5,9 @@ import normalizeCreateCustomer from './normalizer';
 /**
  * Usage example (in handler):
  *
- * import { fetchCreateCustomer, normalizeCreateCustomer } from 'api/magento/cart/customer/createCustomer';
+ * import {
+ *   fetchCreateCustomer, normalizeCreateCustomer,
+ * } from 'api/magento/cart/customer/createCustomer';
  * ...
  * ...
  * const rawData = await fetchCreateCustomer(queryData);
