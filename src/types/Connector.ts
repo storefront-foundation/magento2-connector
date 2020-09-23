@@ -7,7 +7,6 @@ import removeCartItem from '../cart/removeCartItem';
 import product from '../product';
 import productSlots from '../product/productSlots';
 import productSuggestions from '../product/productSuggestions';
-import routes from '../routes';
 import session from '../session';
 import signIn from '../session/signIn';
 import signOut from '../session/signOut';
@@ -41,7 +40,7 @@ export default class Magento2Connector implements Connector {
 
   search = search;
 
-  routes = routes;
+  routes = []; // @TODO: remove `routes` field from the interface
 
   productSlots = productSlots;
 
