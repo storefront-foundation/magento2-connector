@@ -1,10 +1,10 @@
 import fetchWithGraphQl from '../fetchWithGraphQl';
-import menuQuery from './query';
+import menuQuery from './menuQuery';
 
 /**
  * Magento 2: menu fetcher
  */
-async function fetcher({
+async function fetchMenu({
   numberOfLevels = 2,
   menuItemFields = [
     'name',
@@ -18,4 +18,4 @@ async function fetcher({
   return rawData;
 }
 
-export default fetcher;
+export default fetchMenu;

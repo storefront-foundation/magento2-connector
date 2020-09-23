@@ -21,7 +21,7 @@ function getFullInnerSchema(menuItemFields, numberOfLevels): string {
 /**
  * Magento 2: menu Graph QL query
  */
-const query = ({
+const menuQuery = ({
   numberOfLevels = 2,
   menuItemFields = [
     'name',
@@ -45,4 +45,4 @@ const query = ({
   };
 };
 
-export default query;
+export default menuQuery;

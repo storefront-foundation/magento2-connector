@@ -8,11 +8,14 @@ import last from 'lodash/last';
 import SubcategoryPageData from 'react-storefront-connector/SubcategoryPageData';
 import Result from 'react-storefront-connector/Result';
 import withAppData from '../app/withAppData';
-import { fetchSubcategorySubCategories, normalizeSubcategorySubCategories } from './sub-categories';
-import { fetchSubcategoryId, normalizeSubcategoryId } from './id';
-import fetchSubcategory from './fetcher';
-import normalizeSubcategory from './normalizer';
-import { fetchCmsBlocks, normalizeCmsBlocks } from '../cms/blocks';
+import fetchSubcategorySubCategories from './sub-categories/fetchSubcategorySubCategories';
+import subcategorySubCategoriesNormalizer from './sub-categories/subcategorySubCategoriesNormalizer';
+import fetchSubcategoryId from './id/fetchSubcategoryId';
+import subcategoryIdNormalizer from './id/subcategoryIdNormalizer';
+import fetchSubcategory from './fetchSubcategory';
+import subcategoryNormalizer from './subcategoryNormalizer';
+import fetchCmsBlocks from '../cms/fetchCmsBlocks';
+import cmsBlocksNormalizer from '../cms/cmsBlocksNormalizer';
 
 function filtersToQuery(filters): string {
   const filtersGrouped = groupBy(filters, (x) => x.split(':')[0]);
@@ -91,11 +94,11 @@ export default async function subcategory(
       name = `Results for "${q}"`;
     } else {
       const rawIdData = await fetchSubcategoryId({ urlKey });
-      const idData = normalizeSubcategoryId(rawIdData);
+      const idData = subcategoryIdNormalizer(rawIdData);
       id = idData.id;
       name = idData.name;
       const rawSubCategoriesData = await fetchSubcategorySubCategories({ urlKey });
-      navMenu = normalizeSubcategorySubCategories(rawSubCategoriesData);
+      navMenu = subcategorySubCategoriesNormalizer(rawSubCategoriesData);
     }
 
     // 2) get all subcategory page data
@@ -106,7 +109,7 @@ export default async function subcategory(
       filter: filtersToQuery(filters),
       search: q,
     });
-    const data = normalizeSubcategory(rawData);
+    const data = subcategoryNormalizer(rawData);
 
     // 3) get CMS slots data
     let cmsBlocks = [];
@@ -114,7 +117,7 @@ export default async function subcategory(
     if (isLanding) {
       const identifiers = resolveCmsBlocksIdentifiers(urlKey);
       const rawCmsBlocks = await fetchCmsBlocks({ identifiers });
-      cmsBlocks = normalizeCmsBlocks(rawCmsBlocks).items;
+      cmsBlocks = cmsBlocksNormalizer(rawCmsBlocks).items;
     }
 
     // collect all page data

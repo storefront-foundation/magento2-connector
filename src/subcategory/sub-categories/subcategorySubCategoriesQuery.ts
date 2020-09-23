@@ -3,7 +3,7 @@ import GraphQlQuery from '../../types/GraphQlQuery';
 /**
  * Magento 2: subcategory sub-categories Graph QL query
  */
-const query = ({ urlKey }): GraphQlQuery => ({
+const subcategorySubCategoriesQuery = ({ urlKey }): GraphQlQuery => ({
   query: `
     {
       categoryList(
@@ -25,4 +25,4 @@ const query = ({ urlKey }): GraphQlQuery => ({
   `,
 });
 
-export default query;
+export default subcategorySubCategoriesQuery;

@@ -33,7 +33,7 @@ const customAttributeMetadata = `
 /**
  * Magento 2: product query
  */
-const query = (urlKey): GraphQlQuery => ({
+const productQuery = (urlKey): GraphQlQuery => ({
   query: `
     {
       ${customAttributeMetadata}
@@ -123,4 +123,4 @@ const query = (urlKey): GraphQlQuery => ({
   `,
 });
 
-export default query;
+export default productQuery;

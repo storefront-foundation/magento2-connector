@@ -4,7 +4,7 @@ import orderBy from 'lodash/orderBy';
 /**
  * Magento 2: subcategory sub-categories normalizer
  */
-function normalizer(rawData): any {
+function subcategorySubCategoriesNormalizer(rawData): any {
   const rawChildren = get(rawData, 'data.categoryList[0].children', []);
   const rawChildrenSorted = orderBy(rawChildren, 'position');
   return {
@@ -15,4 +15,4 @@ function normalizer(rawData): any {
   };
 }
 
-export default normalizer;
+export default subcategorySubCategoriesNormalizer;

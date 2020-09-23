@@ -105,7 +105,7 @@ function getFacetsData(rawSubcategoryData) {
 /**
  * Magento 2: subcategory normalizer
  */
-function normalizer(rawData): any {
+function subcategoryNormalizer(rawData): any {
   const rawSubcategoryData = get(rawData, 'data.products', {});
   return {
     total: get(rawSubcategoryData, 'total_count', 0),
@@ -117,4 +117,4 @@ function normalizer(rawData): any {
   };
 }
 
-export default normalizer;
+export default subcategoryNormalizer;

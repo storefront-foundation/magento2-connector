@@ -65,7 +65,7 @@ const pageInfoSchema = `
 /**
  * Magento 2: subcategory Graph QL query
  */
-const query = ({
+const subcategoryQuery = ({
   categoryId = null,
   pageSize = 16,
   currentPage = 1,
@@ -103,4 +103,4 @@ const query = ({
   };
 };
 
-export default query;
+export default subcategoryQuery;

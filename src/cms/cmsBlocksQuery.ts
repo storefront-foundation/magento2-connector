@@ -1,9 +1,9 @@
-import GraphQlQuery from '../../types/GraphQlQuery';
+import GraphQlQuery from '../types/GraphQlQuery';
 
 /**
  * Magento 2: cmsBlocks Graph QL query
  */
-const query = ({ identifiers }): GraphQlQuery => ({
+const cmsBlocksQuery = ({ identifiers }): GraphQlQuery => ({
   query: `
     {
       cmsBlocks(identifiers: "${identifiers}") {
@@ -17,4 +17,4 @@ const query = ({ identifiers }): GraphQlQuery => ({
   `,
 });
 
-export default query;
+export default cmsBlocksQuery;
