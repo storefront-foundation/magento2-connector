@@ -2,6 +2,11 @@
 
 The [React Storefront](https://github.com/storefront-foundation/react-storefront) headless ecommerce connector for [Adobe Magento 2](https://devdocs.magento.com/guides/v2.3/graphql/). 
 
+Main features:
+- Product listing pages (PLP)
+- Product detail pages (PDP)
+- Cart
+
 This guide covers how to get up and running with the Magento 2 Connector. For information on connectors in general and how to write your own connector refer to the [React Storefront Connectors](https://docs.reactstorefront.io/guides/connectors) documentation.
 
 ## Requirements
@@ -13,7 +18,7 @@ You will need a Magento 2 (sometimes referred to as "M2") backend to try out the
 Create a new React Storefront app using version 8.14.0 or later:
 
 ```
-npm create react-storefront@^8.014.0 my-m2-app
+npm create react-storefront my-m2-app
 ```
 
 Next `cd` into your created application and install the Magento2 connector:
@@ -74,5 +79,11 @@ xdn deploy
 Refer to the [XDN deployment guide](https://developer.moovweb.com/guides/deploying) for more information.
 
 
+## Development
 
-
+- In 1st terminal window (this repo), run `yalc publish` & `npm run watch`
+- In 2nd terminal window, open [RSF starter app (`commercial` branch)](https://github.com/storefront-foundation/react-storefront-starter-app/tree/commercial)
+- Go to `next.config.js` and change `connector` field value to `react-storefront-magento2-connector`
+- Run `yalc add react-storefront-connector`
+- Run `npm i`
+- Run `npm run start`

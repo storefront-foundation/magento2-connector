@@ -12,7 +12,7 @@ export default async function cart(cartId): Promise<CartResponse> {
   if (error) {
     return {
       error,
-    }
+    };
   }
 
   const data = normalizeCart(rawData);

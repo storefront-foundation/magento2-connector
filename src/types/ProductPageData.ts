@@ -1,6 +1,6 @@
-import ProductPageData, { Product as _Product } from 'react-storefront-connector/ProductPageData'
+import ProductPageData, { Product as _Product } from 'react-storefront-connector/ProductPageData';
 
-export default ProductPageData
+export default ProductPageData;
 
 /**
  * Information about a product

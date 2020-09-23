@@ -1,5 +1,5 @@
 import { fetchMergeCarts, normalizeMergeCarts } from '../../cart/common/mergeCarts';
-import CartResponse from '../../types/CartResponse'
+import CartResponse from '../../types/CartResponse';
 
 /**
  * Magento 2: common -> mergeCarts

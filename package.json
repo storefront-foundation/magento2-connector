@@ -1,6 +1,6 @@
 {
   "name": "react-storefront-magento2-connector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Magento 2 Connector",
   "module": "./index.js",
   "watch": {
@@ -8,29 +8,32 @@
       "patterns": [
         "src"
       ],
-      "ignore": "*/index.js",
       "extensions": "js,ts",
       "quiet": false
     }
   },
   "scripts": {
     "release": "npm run build && cd dist && npm publish && cd ..",
-    "test": "jest",
-    "watch": "npm-watch",
+    "watch": "npm-watch push-build",
     "ts:watch": "tsc --watch",
     "ts:check": "tsc",
     "push-build": "npm run build && cd dist && yalc push && cd ..",
     "clean": "mkdir -p dist; cd dist; ls | grep -v 'node_modules\\|package-lock.json' | xargs rm -rf; cd ../;",
     "build": "npm run ts:check && npm run build:prep && NODE_ENV=production npm run build:sources",
     "build:prep": "npm run clean && cp package.json README.md dist",
-    "build:sources": "babel ./src --source-maps --out-dir dist --extensions \".js,.ts\""
+    "build:sources": "babel ./src --source-maps --out-dir dist --extensions \".js,.ts\"",
+    "lint": "npm run lint:check",
+    "lint:check": "npx eslint src --ext .ts,.js",
+    "lint:fix": "npx eslint src --ext .ts,.js --fix"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "isomorphic-unfetch": "^3.0.0",
-    "react-storefront": "^8.12.0"
+    "lodash": "^4.17.20",
+    "react-storefront": "^8.12.0",
+    "react-storefront-connector": "^1.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
@@ -42,12 +45,15 @@
     "@babel/preset-typescript": "^7.10.1",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/lodash": "^4.14.155",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-imports": "^2.0.0",
-    "lodash": "^4.17.19",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-typescript": "^10.0.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.3.0",
     "npm-watch": "^0.6.0",
-    "prettier": "^1.19.1",
-    "react-storefront-connector": "^1.0.0",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.7"
   }
 }
