@@ -1,4 +1,4 @@
-import { Product } from '../types/ProductPageData';
+import { Product } from '../../types/ProductPageData';
 
 /**
  * @TODO: implement

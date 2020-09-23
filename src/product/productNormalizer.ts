@@ -130,7 +130,7 @@ function specsToHtml(specs) {
 /**
  * Magento 2: product normalizer
  */
-function normalizer(rawData, productId): Product | null {
+function productNormalizer(rawData, productId): Product | null {
   const rawProduct = get(rawData, 'data.products.items[0]');
   const rawCustomAttributes = get(rawData, 'data.customAttributeMetadata.items', []);
 
@@ -161,4 +161,4 @@ function normalizer(rawData, productId): Product | null {
   };
 }
 
-export default normalizer;
+export default productNormalizer;
