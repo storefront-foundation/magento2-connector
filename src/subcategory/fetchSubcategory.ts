@@ -1,10 +1,10 @@
 import fetchWithGraphQl from '../fetchWithGraphQl';
-import subcategoryQuery from './query';
+import subcategoryQuery from './subcategoryQuery';
 
 /**
  * Magento 2: subcategory fetcher
  */
-async function fetcher({
+async function fetchSubcategory({
   categoryId = null,
   pageSize = 16,
   currentPage = 1,
@@ -24,4 +24,4 @@ async function fetcher({
   return rawData;
 }
 
-export default fetcher;
+export default fetchSubcategory;

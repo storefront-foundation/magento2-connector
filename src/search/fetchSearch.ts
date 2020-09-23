@@ -1,4 +1,4 @@
-import { fetchSubcategory } from '../subcategory';
+import fetchSubcategory from '../subcategory/fetchSubcategory';
 
 /**
  * Magento 2: search fetcher

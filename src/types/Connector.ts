@@ -12,7 +12,7 @@ import session from '../session';
 import signIn from '../session/signIn';
 import signOut from '../session/signOut';
 import signUp from '../session/signUp';
-import subcategory from '../subcategory';
+import subcategory from '../subcategory/subcategory';
 import search from '../search/search';
 import searchSuggestions from '../search/suggestions/searchSuggestions';
 

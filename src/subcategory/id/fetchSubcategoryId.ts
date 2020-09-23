@@ -1,13 +1,13 @@
 import fetchWithGraphQl from '../../fetchWithGraphQl';
-import subcategoryIdQuery from './query';
+import subcategoryIdQuery from './subcategoryIdQuery';
 
 /**
  * Magento 2: subcategory id fetcher
  */
-async function fetcher({ urlKey }): Promise<any> {
+async function fetchSubcategoryId({ urlKey }): Promise<any> {
   const query = subcategoryIdQuery({ urlKey });
   const rawData = await fetchWithGraphQl(query);
   return rawData;
 }
 
-export default fetcher;
+export default fetchSubcategoryId;
