@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 import cheerio from 'cheerio';
-import { host } from '../../config';
+import { host } from '../config';
 
 /**
  * Magento 2: cmsBlocks normalizer
  */
-function normalizer(rawData): any {
+function cmsBlocksNormalizer(rawData): any {
   const items = get(rawData, 'data.cmsBlocks.items', []);
   return {
     items: items.map((item) => {
@@ -40,4 +40,4 @@ function normalizer(rawData): any {
   };
 }
 
-export default normalizer;
+export default cmsBlocksNormalizer;

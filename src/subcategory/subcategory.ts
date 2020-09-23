@@ -12,7 +12,8 @@ import { fetchSubcategorySubCategories, normalizeSubcategorySubCategories } from
 import { fetchSubcategoryId, normalizeSubcategoryId } from './id';
 import fetchSubcategory from './fetcher';
 import normalizeSubcategory from './normalizer';
-import { fetchCmsBlocks, normalizeCmsBlocks } from '../cms/blocks';
+import fetchCmsBlocks from '../cms/fetchCmsBlocks';
+import cmsBlocksNormalizer from '../cms/cmsBlocksNormalizer';
 
 function filtersToQuery(filters): string {
   const filtersGrouped = groupBy(filters, (x) => x.split(':')[0]);
@@ -114,7 +115,7 @@ export default async function subcategory(
     if (isLanding) {
       const identifiers = resolveCmsBlocksIdentifiers(urlKey);
       const rawCmsBlocks = await fetchCmsBlocks({ identifiers });
-      cmsBlocks = normalizeCmsBlocks(rawCmsBlocks).items;
+      cmsBlocks = cmsBlocksNormalizer(rawCmsBlocks).items;
     }
 
     // collect all page data
