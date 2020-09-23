@@ -1,4 +1,4 @@
-export { default as home } from './home';
+export { default as home } from './home/home';
 export { default as addToCart } from './cart/addToCart';
 export { default as updateCartItem } from './cart/updateCartItem';
 export { default as removeCartItem } from './cart/removeCartItem';

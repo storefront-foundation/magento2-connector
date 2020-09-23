@@ -1,5 +1,5 @@
 import Connector from 'react-storefront-connector';
-import home from '../home';
+import home from '../home/home';
 import cart from '../cart';
 import addToCart from '../cart/addToCart';
 import updateCartItem from '../cart/updateCartItem';
