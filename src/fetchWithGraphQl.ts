@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch';
-import { graphQlHost } from './config';
+import { store, graphQlHost } from './config';
 import GraphQlQuery from './types/GraphQlQuery';
 
 function fetchWithGraphQl(query: GraphQlQuery, token: string | null = null): Promise<any> {
@@ -12,7 +12,7 @@ function fetchWithGraphQl(query: GraphQlQuery, token: string | null = null): Pro
       ...authHeaders,
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Store: 'default',
+      Store: store,
     },
     body: JSON.stringify(query),
   }).then((res) => res.json());
