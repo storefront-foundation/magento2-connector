@@ -6,7 +6,7 @@ function normalizeItems(children): any[] {
   const childrenSorted = orderBy(children, ['position']);
   return childrenSorted.map((item) => ({
     name: get(item, 'name', ''),
-    url: `/${get(item, 'url_path', '')}${get(item, 'url_suffix', '')}`,
+    url: `/${get(item, 'url_path', '')}${get(item, 'url_suffix') || ''}`,
     items: !isEmpty(item.children) ? normalizeItems(item.children) : [],
   }));
 }
