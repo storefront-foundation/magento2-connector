@@ -27,7 +27,7 @@ function normalizer(rawData): any {
         ) {
           newHref = `/s${newHref}`;
         } else {
-          newHref = `/p${newHref}`;
+          newHref = `/p/${newHref}`;
         }
 
         $link.attr('href', newHref);
