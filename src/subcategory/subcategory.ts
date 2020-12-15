@@ -68,6 +68,8 @@ export default async function subcategory(
 
     const defaultSort = 'position: DESC';
     const isSearch = !isEmpty(q);
+    
+    // TODO: This is not correct in all cases
     const isLanding = get(slug, 'length', 0) === 1 && !isSearch; // 1st level pages (/women, /men, etc.) are landings
     const lastSlug: string = last(slug) || '';
     const urlKey = lastSlug.replace('.html', '');

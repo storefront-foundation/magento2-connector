@@ -13,5 +13,6 @@ export { default as signOut } from './session/signOut';
 export { default as signUp } from './session/signUp';
 export { default as subcategory } from './subcategory';
 export { default as search } from './search';
+export { default as searchSuggestions } from './search/searchSuggestions';
 
 export { default } from './types/Connector';

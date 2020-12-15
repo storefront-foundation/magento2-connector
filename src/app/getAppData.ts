@@ -18,7 +18,7 @@ function normalizeMenuItems(items: any[]): MenuItem[] {
 }
 
 function getTabs(menu: MenuItem): MenuItem[] {
-  const items: MenuItem[] = get(menu, 'items', []);
+  const items: MenuItem[] = menu.items || [];
   return items.map((item: MenuItem): MenuItem => ({
     ...pick(item, ['text', 'href', 'as']),
     items: (get(item, 'items') || []).map((subcategoryItem: MenuItem): MenuItem => ({
