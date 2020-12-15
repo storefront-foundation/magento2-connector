@@ -1,13 +1,13 @@
 import GraphQlQuery from '../types/GraphQlQuery';
 
 const specsAttributes = [
-  'style_general',
-  'material',
-  'pattern',
-  'climate',
-  'category_gear',
-  'gender',
-  'activity',
+  // 'style_general',
+  // 'material',
+  // 'pattern',
+  // 'climate',
+  // 'category_gear',
+  // 'gender',
+  // 'activity',
 ];
 
 const customAttributeMetadata = `

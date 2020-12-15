@@ -99,6 +99,8 @@ function getSpecs(rawProduct, rawCustomAttributes) {
     .map((specsAttribute) => {
       const spec = specsAttribute.key;
       const specName = specsAttribute.name;
+      if (!rawCustomAttributes) return null
+
       const attr = rawCustomAttributes.find((_attr) => get(_attr, 'attribute_code') === spec);
       const rawValue = get(rawProduct, spec) || '';
       const value = rawValue
