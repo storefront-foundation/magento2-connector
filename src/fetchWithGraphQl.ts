@@ -12,7 +12,7 @@ function fetchWithGraphQl(query: GraphQlQuery, token: string | null = null): Pro
       ...authHeaders,
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Store: store,
+      Store: store ? store : 'default',
     },
     body: JSON.stringify(query),
   }).then((res) => res.json());
